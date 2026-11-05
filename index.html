@@ -5,263 +5,487 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weihnachtsgeheimnis 2026</title>
+
 <style>
 *{box-sizing:border-box}
+
 body{
-  margin:0;min-height:100vh;padding:20px;
-  display:flex;justify-content:center;align-items:center;
-  background:radial-gradient(circle at top,#315b42,#102b20 65%,#081a13);
-  color:#fff5dc;font-family:Arial,sans-serif
+  margin:0;
+  min-height:100vh;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  color:#fff5dc;
+  background:
+    radial-gradient(circle at 50% 0%,#477b51 0%,#183d2a 45%,#081a12 100%);
+  overflow-x:hidden;
 }
+
+.snow{
+  position:fixed;
+  top:-30px;
+  color:white;
+  opacity:.7;
+  font-size:20px;
+  animation:fall linear infinite;
+  pointer-events:none;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
 .container{
-  width:100%;max-width:650px;padding:30px;text-align:center;
+  position:relative;
+  width:100%;
+  max-width:700px;
+  padding:30px;
+  text-align:center;
   background:rgba(8,27,19,.96);
-  border:2px solid #c9a64b;border-radius:22px;
-  box-shadow:0 0 35px #0008
+  border:2px solid #d6b451;
+  border-radius:25px;
+  box-shadow:0 0 45px #0009,0 0 20px #d6b45133;
+  overflow:hidden;
 }
-h1,h2{color:#e6c66d}
-.subtitle{color:#d8d0b8;line-height:1.6}
-.progress{height:10px;background:#304b3b;border-radius:20px;margin:25px 0;overflow:hidden}
-.progress-bar{height:100%;width:0;background:#d6b451;transition:width .3s}
-.question{font-size:21px;line-height:1.5;margin:25px 0}
-.answers{display:grid;gap:12px}
-button{
-  border:1px solid #c9a64b;background:#244a35;color:white;
-  padding:15px;border-radius:12px;font-size:16px;cursor:pointer
+
+.container:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:5px;
+  background:linear-gradient(90deg,#b28b31,#fff0a8,#b28b31);
 }
-button:hover:not(:disabled){background:#376747}
-button:disabled{opacity:.65;cursor:default}
-.feedback{min-height:65px;margin:20px 0;font-size:18px;line-height:1.5}
+
+h1{
+  color:#f0d47b;
+  font-size:clamp(25px,5vw,38px);
+  margin:12px 0;
+  text-shadow:0 0 15px #e6c66d55;
+}
+
+h2{color:#f0d47b}
+
+.subtitle{
+  color:#ded7c3;
+  line-height:1.6;
+}
+
+.tree{
+  font-size:clamp(100px,23vw,160px);
+  line-height:1.2;
+  margin:10px 0;
+  filter:drop-shadow(0 0 15px #d6b45155);
+}
+
+.lights{
+  color:#f4d46f;
+  font-size:24px;
+  letter-spacing:9px;
+  margin:15px 0;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{opacity:.55;text-shadow:0 0 5px #ffd76a}
+  to{opacity:1;text-shadow:0 0 20px #ffd76a}
+}
+
+.start-button{
+  margin-top:20px;
+  width:100%;
+  max-width:330px;
+  padding:18px;
+  border:2px solid #f5dc8c;
+  border-radius:15px;
+  background:linear-gradient(135deg,#d9b64e,#a67b25);
+  color:#17291b;
+  font-size:21px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 5px 18px #0005;
+  transition:.2s;
+}
+
+.start-button:hover{
+  transform:scale(1.04);
+  background:linear-gradient(135deg,#ffe99b,#c99c36);
+}
+
+.secondary-button{
+  border:1px solid #c9a64b;
+  background:#244a35;
+  color:white;
+  padding:15px;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.secondary-button:hover{background:#376747}
+
+.progress{
+  height:10px;
+  background:#304b3b;
+  border-radius:20px;
+  margin:22px 0;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#b28b31,#ffe99b);
+  transition:width .3s;
+}
+
+.stats{
+  display:flex;
+  justify-content:space-around;
+  gap:10px;
+  flex-wrap:wrap;
+  color:#e6c66d;
+}
+
+.question{
+  font-size:20px;
+  line-height:1.5;
+  margin:25px 0;
+}
+
+.answers{
+  display:grid;
+  gap:12px;
+}
+
+.answers button{
+  border:1px solid #c9a64b;
+  background:#244a35;
+  color:white;
+  padding:15px;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.answers button:hover:not(:disabled){
+  background:#376747;
+  transform:translateY(-2px);
+}
+
+.answers button:disabled{
+  opacity:.6;
+  cursor:default;
+}
+
+.feedback{
+  min-height:65px;
+  margin:20px 0;
+  font-size:18px;
+  line-height:1.5;
+}
+
 .door{
-  display:inline-block;background:#c9a64b;color:#102b20;
-  padding:14px 22px;border-radius:12px;font-size:25px;
-  font-weight:bold;margin:10px
+  display:inline-block;
+  background:linear-gradient(135deg,#f5dc8c,#bd9132);
+  color:#102b20;
+  padding:14px 22px;
+  border-radius:12px;
+  font-size:25px;
+  font-weight:bold;
+  margin:10px;
+  box-shadow:0 3px 10px #0005;
 }
-.hidden{display:none}
-.small{color:#c8c0aa;font-size:13px;margin-top:20px}
-@media(max-width:480px){.container{padding:20px}.question{font-size:19px}}
+
+.errorText{color:#ffb3a8}
+
+.hidden{display:none!important}
+
+.small{
+  color:#bcb69f;
+  font-size:13px;
+  margin-top:25px;
+}
+
+.decoration{
+  color:#d6b451;
+  font-size:20px;
+  margin:12px;
+}
+
 </style>
 </head>
+
 <body>
+
+<div class="snow" style="left:8%;animation-duration:12s">❄</div>
+<div class="snow" style="left:22%;animation-duration:16s;animation-delay:2s">❅</div>
+<div class="snow" style="left:48%;animation-duration:13s;animation-delay:4s">❄</div>
+<div class="snow" style="left:72%;animation-duration:17s;animation-delay:1s">❅</div>
+<div class="snow" style="left:91%;animation-duration:14s;animation-delay:3s">❄</div>
+
 <div class="container">
-  <h1>🎄 Das Weihnachtsgeheimnis 🎄</h1>
-  <p class="subtitle" id="welcome"></p>
 
-  <div id="game">
-    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
-    <p id="counter"></p>
+  <!-- STARTSEITE -->
+  <div id="startScreen">
+    <div class="decoration">✦ ❄ ✦ ❄ ✦</div>
+
+    <h1>Das Weihnachtsgeheimnis</h1>
+    <p class="subtitle">Weihnachtsmission 2026</p>
+
+    <div class="lights">✦ ● ✦ ● ✦ ● ✦</div>
+
+    <div class="tree">🎄</div>
+
+    <h2 id="welcomeTitle">Willkommen!</h2>
+
+    <p class="subtitle" id="welcomeText">
+      Ein besonderes Weihnachtsabenteuer wartet auf dich.
+      Beantworte die Fragen richtig und entdecke deine geheimen Türnummern.
+    </p>
+
+    <p class="subtitle">
+      Schaffst du alle 12 Fragen?
+    </p>
+
+    <button class="start-button" onclick="startQuiz()">
+      🎁 Quiz starten
+    </button>
+
+    <div class="decoration">✦ ❄ ✦ ❄ ✦</div>
+  </div>
+
+
+  <!-- QUIZ -->
+  <div id="game" class="hidden">
+
+    <h1>🎄 Weihnachtsquiz 🎄</h1>
+
+    <p class="subtitle" id="quizWelcome"></p>
+
+    <div class="stats">
+      <span id="counter">Frage 1 von 12</span>
+      <span id="errors">Fehler: 0 / 15</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
     <div class="question" id="question"></div>
+
     <div class="answers" id="answers"></div>
+
     <div class="feedback" id="feedback"></div>
-    <button id="nextButton" class="hidden" onclick="nextQuestion()">Weiter</button>
+
+    <button id="nextButton" class="secondary-button hidden" onclick="nextQuestion()">
+      Weiter ➜
+    </button>
+
   </div>
 
+
+  <!-- ENDE -->
   <div id="finished" class="hidden">
-    <h2>🎁 Geschafft!</h2>
-    <p>Du hast alle 8 Rätsel gelöst. Hier sind deine Türnummern:</p>
+
+    <div class="tree">🎄</div>
+
+    <h1>Geschafft!</h1>
+
+    <p class="subtitle">
+      Du hast alle 12 Fragen beantwortet!
+    </p>
+
+    <p id="finalErrors"></p>
+
+    <h2>Deine 8 Türnummern:</h2>
+
     <div id="allDoors"></div>
-    <p class="subtitle">Viel Spaß beim Öffnen! 🎄</p>
+
+    <p class="subtitle">
+      Frohe Weihnachten und viel Spaß beim Öffnen! 🎁
+    </p>
+
+    <div class="lights">✦ ● ✦ ● ✦</div>
+
   </div>
-  <p class="small">Das Weihnachtsgeheimnis 2026</p>
+
+  <p class="small">✦ Das Weihnachtsgeheimnis 2026 ✦</p>
+
 </div>
 
+
 <script>
+
 const missions = {
-  mama: {
-    name:"Mami",
-    doors:[2,6,8,11,14,17,19,23],
-    questions:[
-      {
-        q:"MATHE: Ein Artikel kostet 240 €. Er wird zuerst um 15 % reduziert und danach kostet er nochmals 20 % weniger. Wie viel kostet er jetzt?",
-        a:["163,20 €","168 €","172,80 €","180 €"],
-        correct:0
-      },
-      {
-        q:"MATHE: Löse die Gleichung: 3(2x − 4) = 2x + 12",
-        a:["x = 4","x = 5","x = 6","x = 8"],
-        correct:2
-      },
-      {
-        q:"ENGLISCH: Welche Form ist richtig? „If I _____ more time, I would learn another language.“",
-        a:["have","had","will have","would have"],
-        correct:1
-      },
-      {
-        q:"ENGLISCH: Welche Zeitform steckt in diesem Satz? „She has been waiting for two hours.“",
-        a:["Simple Past","Present Perfect","Present Perfect Progressive","Past Perfect"],
-        correct:2
-      },
-      {
-        q:"FRANZÖSISCH: Welche Form ist richtig? „Hier, nous _____ au cinéma.“",
-        a:["allons","sommes allés","avons allé","aller"],
-        correct:1
-      },
-      {
-        q:"FRANZÖSISCH: Was bedeutet „Depuis trois ans, j'habite à Paris“?",
-        a:["Vor drei Jahren wohnte ich in Paris.","Seit drei Jahren wohne ich in Paris.","Ich werde drei Jahre in Paris wohnen.","Ich war drei Jahre in Paris."],
-        correct:1
-      },
-      {
-        q:"FRANKREICH: Welche französische Stadt liegt an der Mündung der Rhône und ist für ihren Hafen bekannt?",
-        a:["Bordeaux","Marseille","Lille","Straßburg"],
-        correct:1
-      },
-      {
-        q:"FRANKREICH: Wie heißt das französische Überseegebiet in der Karibik, das zu den Kleinen Antillen gehört?",
-        a:["Korsika","Guadeloupe","Bretagne","Normandie"],
-        correct:1
-      }
-    ]
-  },
 
-  papa: {
-    name:"Dusi",
-    doors:[1,4,7,10,13,16,20,22],
-    questions:[
-      {
-        q:"SIMSON: Welcher Motortyp wird bei den klassischen Simson-S51-Modellen verwendet?",
-        a:["Viertaktmotor","Zweitaktmotor","Wankelmotor","Dieselmotor"],
-        correct:1
-      },
-      {
-        q:"SIMSON: Welche Aufgabe hat der Vergaser?",
-        a:["Er lädt die Batterie.","Er mischt Kraftstoff und Luft.","Er kühlt das Getriebeöl.","Er schaltet die Gänge."],
-        correct:1
-      },
-      {
-        q:"SIMSON: Wofür steht die Bezeichnung M541 bei einem Simson-Motor?",
-        a:["Für einen 5-Gang-Motor mit 41 PS","Für einen Motor der M500-Baureihe mit 4 Gängen","Für einen 41-cm³-Motor","Für einen 5-Takt-Motor"],
-        correct:1
-      },
-      {
-        q:"SIMSON: Welche Aufgabe hat die Zündkerze beim Zweitaktmotor?",
-        a:["Sie entzündet das verdichtete Kraftstoff-Luft-Gemisch.","Sie pumpt das Benzin in den Tank.","Sie schmiert die Kurbelwelle.","Sie regelt die Gangschaltung."],
-        correct:0
-      },
-      {
-        q:"SIMSON: Welches Bauteil überträgt die Kraft vom Motor zum Hinterrad?",
-        a:["Lichtmaschine","Kette und Kettenräder","Zündspule","Lenkkopflager"],
-        correct:1
-      },
-      {
-        q:"SIMSON: In welcher Stadt befand sich das bekannte Simson-Werk?",
-        a:["Suhl","Zwickau","Dresden","Potsdam"],
-        correct:0
-      },
-      {
-        q:"SIMSON: Welche Aufgabe hat die Kupplung?",
-        a:["Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe.","Sie steuert die Beleuchtung.","Sie misst die Geschwindigkeit.","Sie kühlt den Zylinder."],
-        correct:0
-      },
-      {
-        q:"SIMSON: Was unterscheidet einen Zweitaktmotor grundsätzlich von einem Viertaktmotor?",
-        a:["Er benötigt immer zwei Zündkerzen.","Ein Arbeitszyklus erfolgt in zwei Kolbenhüben statt vier.","Er hat grundsätzlich keinen Kolben.","Er läuft nur mit Diesel."],
-        correct:1
-      }
-    ]
-  },
+mama:{
+name:"Mami",
+doors:[2,6,8,11,14,17,19,23],
+questions:[
+{q:"MATHE: Ein Artikel kostet 240 €. Zuerst gibt es 15 % Rabatt, danach nochmals 20 % auf den reduzierten Preis. Wie viel kostet er am Ende?",a:["163,20 €","168 €","172,80 €","180 €"],correct:0},
+{q:"MATHE: Löse die Gleichung: 3(2x − 4) = 2x + 12",a:["x = 4","x = 5","x = 6","x = 8"],correct:2},
+{q:"ENGLISCH: If I _____ more time, I would learn another language.",a:["have","had","will have","would have"],correct:1},
+{q:"ENGLISCH: Welche Zeitform ist das? She has been waiting for two hours.",a:["Simple Past","Present Perfect","Present Perfect Progressive","Past Perfect"],correct:2},
+{q:"ENGLISCH: If she had studied harder, she _____ the exam.",a:["will pass","would pass","would have passed","has passed"],correct:2},
+{q:"ENGLISCH: Welche Aussage ist grammatikalisch richtig?",a:["He doesn't likes coffee.","He don't like coffee.","He doesn't like coffee.","He not like coffee."],correct:2},
+{q:"FRANZÖSISCH: Hier, nous _____ au cinéma.",a:["allons","sommes allés","avons allé","aller"],correct:1},
+{q:"FRANZÖSISCH: Was bedeutet: Depuis trois ans, j'habite à Paris?",a:["Vor drei Jahren wohnte ich in Paris.","Seit drei Jahren wohne ich in Paris.","Ich werde drei Jahre in Paris wohnen.","Ich war drei Jahre in Paris."],correct:1},
+{q:"FRANZÖSISCH: Welches Wort bedeutet „obwohl“?",a:["parce que","mais","bien que","donc"],correct:2},
+{q:"FRANKREICH: Welcher Fluss fließt durch Paris?",a:["Loire","Seine","Rhône","Garonne"],correct:1},
+{q:"FRANKREICH: Welche Stadt ist für ihren großen Hafen am Mittelmeer bekannt?",a:["Marseille","Lille","Straßburg","Dijon"],correct:0},
+{q:"FRANKREICH: Wie heißt das französische Überseegebiet in der Karibik, das zu den Kleinen Antillen gehört?",a:["Korsika","Guadeloupe","Bretagne","Normandie"],correct:1}
+]
+},
 
-  luni: {
-    name:"Luni",
-    doors:[3,5,9,12,15,18,21,24],
-    questions:[
-      {
-        q:"FAHRSCHULE: Du kommst an eine Kreuzung ohne Verkehrszeichen. Von rechts kommt ein Auto. Was gilt grundsätzlich?",
-        a:["Du hast Vorfahrt.","Rechts vor links.","Das größere Fahrzeug hat Vorfahrt.","Wer zuerst hupt, darf fahren."],
-        correct:1
-      },
-      {
-        q:"FAHRSCHULE: Was bedeutet ein rundes blaues Verkehrszeichen mit weißem Pfeil nach rechts?",
-        a:["Rechts abbiegen ist verboten.","Vorgeschriebene Fahrtrichtung rechts.","Einbahnstraße endet.","Achtung, Kurve."],
-        correct:1
-      },
-      {
-        q:"FAHRSCHULE: Wie lange dauert die reguläre Probezeit beim erstmaligen Erwerb einer Fahrerlaubnis?",
-        a:["Ein Jahr","Zwei Jahre","Drei Jahre","Vier Jahre"],
-        correct:1
-      },
-      {
-        q:"FAHRSCHULE: Du fährst auf eine Autobahn auf. Welches Verhalten ist richtig?",
-        a:["Auf dem Beschleunigungsstreifen die Geschwindigkeit anpassen und eine passende Lücke suchen.","Auf dem Beschleunigungsstreifen sofort anhalten.","Immer Vorfahrt erzwingen.","Auf dem Standstreifen weiterfahren."],
-        correct:0
-      },
-      {
-        q:"KLETTERN: Wie heißt der Knoten, der häufig zum Einbinden ins Kletterseil verwendet wird?",
-        a:["Palstek","Achterknoten","Kreuzknoten","Schotstek"],
-        correct:1
-      },
-      {
-        q:"KLETTERN: Was ist ein Partnercheck vor dem Klettern?",
-        a:["Man kontrolliert gegenseitig Gurt, Knoten, Sicherungsgerät und Seil.","Man prüft, wer schneller klettert.","Man vergleicht die Kletterschuhe.","Man zählt die Griffe an der Wand."],
-        correct:0
-      },
-      {
-        q:"KLETTERN: Was versteht man unter „Bouldern“?",
-        a:["Klettern an hohen Wänden mit Seil.","Klettern in geringer Höhe ohne Seil über Matten.","Klettern an gefrorenen Wasserfällen.","Klettern mit Steigeisen."],
-        correct:1
-      },
-      {
-        q:"KLETTERN: Welche Aufgabe hat ein Sicherungsgerät beim Sportklettern?",
-        a:["Es macht das Seil länger.","Es hilft, das Seil kontrolliert zu halten und den Kletternden zu sichern.","Es verhindert, dass man abrutscht.","Es ersetzt den Klettergurt."],
-        correct:1
-      }
-    ]
-  }
+papa:{
+name:"Dusi",
+doors:[1,4,7,10,13,16,20,22],
+questions:[
+{q:"SIMSON: Welcher Motortyp wird bei der klassischen S51 verwendet?",a:["Viertaktmotor","Zweitaktmotor","Wankelmotor","Dieselmotor"],correct:1},
+{q:"SIMSON: Welche Aufgabe hat der Vergaser?",a:["Er lädt die Batterie.","Er mischt Kraftstoff und Luft.","Er schaltet die Gänge.","Er kühlt das Getriebeöl."],correct:1},
+{q:"SIMSON: Was bedeutet die Bezeichnung M541?",a:["Ein Motor mit 5 Gängen und 41 PS","Ein Motor der M500-Baureihe mit 4 Gängen","Ein 41-cm³-Motor","Ein 5-Takt-Motor"],correct:1},
+{q:"SIMSON: Welche Aufgabe hat die Zündkerze?",a:["Sie entzündet das verdichtete Kraftstoff-Luft-Gemisch.","Sie pumpt Benzin in den Tank.","Sie schmiert die Kurbelwelle.","Sie regelt die Gangschaltung."],correct:0},
+{q:"SIMSON: Welches Bauteil überträgt die Kraft vom Motor zum Hinterrad?",a:["Lichtmaschine","Kette und Kettenräder","Zündspule","Lenkkopflager"],correct:1},
+{q:"SIMSON: In welcher Stadt befand sich das bekannte Simson-Werk?",a:["Suhl","Zwickau","Dresden","Potsdam"],correct:0},
+{q:"SIMSON: Welche Aufgabe hat die Kupplung?",a:["Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe.","Sie steuert die Beleuchtung.","Sie misst die Geschwindigkeit.","Sie kühlt den Zylinder."],correct:0},
+{q:"SIMSON: Wie viele Gänge hat die originale S51 mit M541-Motor?",a:["2","3","4","5"],correct:2},
+{q:"SIMSON: Was bedeutet das Kürzel KR bei der KR51/1 Schwalbe?",a:["Kraftrad","Kleinroller","Kettenrad","Kleinrennmaschine"],correct:1},
+{q:"SIMSON: Welche Funktion hat die Lichtmaschine?",a:["Sie erzeugt elektrische Energie für elektrische Verbraucher und die Zündung.","Sie pumpt Öl in den Motor.","Sie regelt den Benzinfluss.","Sie kühlt den Vergaser."],correct:0},
+{q:"SIMSON: Was ist das Besondere am Gemischschmiersystem eines klassischen Zweitaktmotors?",a:["Das Öl wird dem Kraftstoff beigemischt.","Das Öl wird nur auf die Reifen gesprüht.","Der Motor braucht überhaupt kein Öl.","Das Öl wird im Kühler gespeichert."],correct:0},
+{q:"SIMSON: Welcher Hubraum ist für die klassische S51 typisch?",a:["50 cm³","80 cm³","125 cm³","250 cm³"],correct:0}
+]
+},
+
+luni:{
+name:"Luni",
+doors:[3,5,9,12,15,18,21,24],
+questions:[
+{q:"FAHRSCHULE: Du kommst an eine Kreuzung ohne Verkehrszeichen. Von rechts kommt ein Auto. Was gilt grundsätzlich?",a:["Du hast Vorfahrt.","Rechts vor links.","Das größere Fahrzeug hat Vorfahrt.","Wer zuerst hupt, darf fahren."],correct:1},
+{q:"FAHRSCHULE: Was bedeutet ein rundes blaues Verkehrszeichen mit weißem Pfeil nach rechts?",a:["Rechts abbiegen ist verboten.","Vorgeschriebene Fahrtrichtung rechts.","Einbahnstraße endet.","Achtung, Kurve."],correct:1},
+{q:"FAHRSCHULE: Wie lange dauert die reguläre Probezeit beim erstmaligen Erwerb einer Fahrerlaubnis?",a:["Ein Jahr","Zwei Jahre","Drei Jahre","Vier Jahre"],correct:1},
+{q:"FAHRSCHULE: Du fährst auf eine Autobahn auf. Was ist richtig?",a:["Auf dem Beschleunigungsstreifen Geschwindigkeit anpassen und eine passende Lücke suchen.","Sofort auf dem Beschleunigungsstreifen anhalten.","Vorfahrt erzwingen.","Auf dem Standstreifen weiterfahren."],correct:0},
+{q:"FAHRSCHULE: Was gilt beim Überholen unmittelbar vor einem Fußgängerüberweg?",a:["Überholen ist erlaubt, wenn niemand zu sehen ist.","Überholen ist verboten.","Nur Motorräder dürfen überholen.","Man darf hupen und überholen."],correct:1},
+{q:"FAHRSCHULE: Was gilt beim Abbiegen gegenüber Fußgängern, die die Straße überqueren, in die man einbiegt?",a:["Sie müssen immer warten.","Man muss ihnen das Überqueren ermöglichen und nötigenfalls warten.","Nur bei einer roten Ampel muss man warten.","Es gilt immer rechts vor links."],correct:1},
+{q:"KLETTERN: Wie heißt der Knoten, der häufig zum Einbinden ins Kletterseil verwendet wird?",a:["Palstek","Achterknoten","Kreuzknoten","Schotstek"],correct:1},
+{q:"KLETTERN: Was wird beim Partnercheck vor dem Klettern kontrolliert?",a:["Gurt, Knoten, Sicherungsgerät und Seil.","Nur die Kletterschuhe.","Nur die Farbe des Seils.","Die Anzahl der Griffe."],correct:0},
+{q:"KLETTERN: Was versteht man unter Bouldern?",a:["Klettern an hohen Wänden mit Seil.","Klettern in geringer Höhe ohne Seil über Matten.","Klettern an gefrorenen Wasserfällen.","Klettern mit Steigeisen."],correct:1},
+{q:"KLETTERN: Was bedeutet beim Klettern dynamisches Sichern?",a:["Die Sicherungsperson gibt kontrolliert etwas Seil, um einen Sturz etwas weicher abzufangen.","Man lässt das Seil vollständig los.","Man klettert ohne Sicherung.","Man zieht das Seil immer maximal straff."],correct:0},
+{q:"KLETTERN: Warum sollte ein Kletterseil vor und nach dem Klettern kontrolliert werden?",a:["Um Schäden wie Schnitte, starke Abnutzung oder ungewöhnliche Stellen zu erkennen.","Damit es seine Farbe behält.","Damit es länger wird.","Damit es weniger wiegt."],correct:0},
+{q:"KLETTERN: Was beschreibt der Begriff Vorstieg?",a:["Man klettert eine Route und hängt das Seil während des Aufstiegs in Zwischensicherungen ein.","Man klettert immer ohne Seil.","Man klettert nur an einer Boulderwand.","Man steigt auf einer Treppe zur Kletterwand."],correct:0}
+]
+}
+
 };
+
+const rewardQuestions=[0,1,3,4,6,7,9,11];
 
 const params=new URLSearchParams(window.location.search);
 const person=(params.get("mission")||"").toLowerCase();
 const mission=missions[person];
 
 let current=0;
+let errors=0;
 let answered=false;
+let unlocked=[];
 
+const startScreen=document.getElementById("startScreen");
 const game=document.getElementById("game");
 const finished=document.getElementById("finished");
 
 if(!mission){
-  document.getElementById("welcome").textContent=
-    "Geheimcode nicht gefunden. Bitte deinen persönlichen QR-Code scannen.";
-  game.classList.add("hidden");
+  document.getElementById("welcomeTitle").textContent="Willkommen!";
+  document.getElementById("welcomeText").textContent=
+    "Bitte scanne deinen persönlichen QR-Code, um deine Weihnachtsmission zu starten.";
+  document.querySelector(".start-button").classList.add("hidden");
 }else{
-  document.getElementById("welcome").textContent=
-    "Willkommen, "+mission.name+"! Löse die 8 schwierigen Rätsel und entdecke deine Türnummern.";
+  document.getElementById("welcomeTitle").textContent=
+    "Willkommen, "+mission.name+"! 🎄";
+
+  document.getElementById("welcomeText").textContent=
+    "Deine persönliche Weihnachtsmission wartet auf dich! Beantworte 12 Fragen und sammle deine 8 geheimen Türnummern. Aber Achtung: Du hast nur 15 Fehler frei!";
+
   loadProgress();
-  renderQuestion();
+
+  if(current>=12){
+    startScreen.classList.add("hidden");
+    showFinal();
+  }else{
+    document.querySelector(".start-button").textContent=
+      current>0?"🎁 Quiz fortsetzen":"🎁 Quiz starten";
+  }
 }
 
 function storageKey(){
-  return "weihnachtsgeheimnis2026_hard_"+person;
+  return "weihnachtsgeheimnis2026_v4_"+person;
 }
 
 function loadProgress(){
   try{
     const saved=JSON.parse(localStorage.getItem(storageKey()));
-    if(saved && Number.isInteger(saved.current) && saved.current>=0 && saved.current<=8){
+
+    if(saved && Number.isInteger(saved.current) &&
+       Number.isInteger(saved.errors) &&
+       saved.current>=0 && saved.current<=12 &&
+       saved.errors>=0 && saved.errors<15){
       current=saved.current;
+      errors=saved.errors;
+      unlocked=Array.isArray(saved.unlocked)?saved.unlocked:[];
     }
   }catch(e){
     current=0;
+    errors=0;
+    unlocked=[];
   }
 }
 
 function saveProgress(){
-  localStorage.setItem(storageKey(),JSON.stringify({current:current}));
+  localStorage.setItem(storageKey(),JSON.stringify({
+    current:current,
+    errors:errors,
+    unlocked:unlocked
+  }));
+}
+
+function startQuiz(){
+  if(!mission)return;
+
+  startScreen.classList.add("hidden");
+  game.classList.remove("hidden");
+
+  document.getElementById("quizWelcome").textContent=
+    "Viel Erfolg, "+mission.name+"! 🎄";
+
+  renderQuestion();
+}
+
+function updateStats(){
+  document.getElementById("counter").textContent=
+    "Frage "+Math.min(current+1,12)+" von 12";
+
+  document.getElementById("errors").textContent=
+    "Fehler: "+errors+" / 15";
+
+  document.getElementById("progressBar").style.width=
+    (current/12*100)+"%";
 }
 
 function renderQuestion(){
-  if(current>=8){
+  if(current>=12){
     showFinal();
     return;
   }
 
   answered=false;
+
   const item=mission.questions[current];
 
-  document.getElementById("counter").textContent=
-    "Rätsel "+(current+1)+" von 8";
-  document.getElementById("progressBar").style.width=
-    (current/8*100)+"%";
+  updateStats();
+
   document.getElementById("question").textContent=item.q;
   document.getElementById("feedback").textContent="";
   document.getElementById("nextButton").classList.add("hidden");
@@ -285,18 +509,59 @@ function checkAnswer(index,selected){
   const feedback=document.getElementById("feedback");
 
   if(index===item.correct){
+
     answered=true;
     buttons.forEach(b=>b.disabled=true);
 
-    feedback.innerHTML=
-      "🎉 Richtig! Deine Türnummer ist:<br>"+
-      '<span class="door">'+mission.doors[current]+"</span>";
+    if(rewardQuestions.includes(current)){
+      const doorIndex=rewardQuestions.indexOf(current);
+      const door=mission.doors[doorIndex];
+
+      unlocked.push(door);
+
+      feedback.innerHTML=
+        "🎉 Richtig! Du hast eine Türnummer freigeschaltet:<br>"+
+        '<span class="door">'+door+"</span>";
+    }else{
+      feedback.textContent=
+        "🎉 Richtig! Diese Frage bringt keine Türnummer, aber du bist einen Schritt weiter.";
+    }
 
     current++;
     saveProgress();
+    updateStats();
+
     document.getElementById("nextButton").classList.remove("hidden");
+
   }else{
-    feedback.textContent="Leider falsch! Denk noch einmal nach und versuche es erneut. 😊";
+
+    errors++;
+
+    if(errors>=15){
+
+      current=0;
+      errors=0;
+      unlocked=[];
+      answered=false;
+
+      localStorage.removeItem(storageKey());
+      saveProgress();
+
+      renderQuestion();
+
+      feedback.innerHTML=
+        '<span class="errorText">🚨 15 Fehler erreicht! Alles wurde zurückgesetzt. Du musst wieder bei Frage 1 anfangen!</span>';
+
+      return;
+    }
+
+    saveProgress();
+    updateStats();
+
+    feedback.innerHTML=
+      '<span class="errorText">❌ Leider falsch! Versuch es noch einmal.</span><br>'+
+      "Bisherige Fehler: "+errors+" von 15";
+
     selected.disabled=true;
   }
 }
@@ -306,10 +571,17 @@ function nextQuestion(){
 }
 
 function showFinal(){
+
   game.classList.add("hidden");
+  startScreen.classList.add("hidden");
   finished.classList.remove("hidden");
+
+  document.getElementById("finalErrors").textContent=
+    "Deine Fehlerzahl: "+errors+" von 15";
+
   const area=document.getElementById("allDoors");
   area.innerHTML="";
+
   mission.doors.forEach(number=>{
     const door=document.createElement("span");
     door.className="door";
@@ -319,5 +591,6 @@ function showFinal(){
 }
 
 </script>
+
 </body>
 </html>
