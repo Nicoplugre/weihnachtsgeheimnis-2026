@@ -1,424 +1,442 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Operation Weihnachtsgeheimnis 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Weihnachtsgeheimnis 2026</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #294333, #101b16);
-  color: #f7f0df;
-  font-family: Georgia, serif;
-  padding: 25px 15px;
+  font-family: Arial, sans-serif;
+  color: #fff5dc;
+  background:
+    radial-gradient(circle at top, #315b42, #102b20 65%, #081a13);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-main {
+.container {
+  width: 100%;
   max-width: 650px;
-  margin: auto;
-}
-
-header {
+  background: rgba(8, 27, 19, 0.94);
+  border: 2px solid #c9a64b;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 0 35px rgba(0,0,0,0.4);
   text-align: center;
-  margin-bottom: 25px;
-}
-
-header small {
-  color: #e7ca83;
-  letter-spacing: 3px;
 }
 
 h1 {
-  color: #e7ca83;
-  font-size: 38px;
+  color: #e6c66d;
+  font-size: 30px;
+  margin-top: 0;
 }
 
-.card {
-  background: #1b2d23;
-  border: 1px solid #927b4b;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0 15px 40px #0006;
+h2 {
+  color: #e6c66d;
 }
 
-h2, h3 {
-  color: #e7ca83;
-}
-
-p {
+.subtitle {
+  color: #d8d0b8;
   line-height: 1.6;
 }
 
 .progress {
-  display: flex;
-  gap: 8px;
+  background: #304b3b;
+  height: 10px;
+  border-radius: 20px;
+  margin: 25px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: #d6b451;
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.question {
+  font-size: 21px;
+  line-height: 1.5;
   margin: 25px 0;
 }
 
-.dot {
-  height: 7px;
-  flex: 1;
-  border-radius: 10px;
-  background: #435448;
-}
-
-.dot.done {
-  background: #e7ca83;
-}
-
-.puzzle {
-  background: #122119;
-  border-left: 3px solid #e7ca83;
-  padding: 20px;
-  border-radius: 8px;
-  line-height: 1.7;
-  margin: 20px 0;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #927b4b;
-  font-size: 17px;
-  margin: 10px 0;
+.answers {
+  display: grid;
+  gap: 12px;
 }
 
 button {
-  background: #e7ca83;
-  color: #17271e;
-  border: none;
-  border-radius: 8px;
-  padding: 13px 20px;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background: #f5dda0;
-}
-
-.numbers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.number {
-  background: #20372a;
-  color: #f7f0df;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 21px;
-  font-weight: bold;
-}
-
-.reveal {
-  background: #f4e9cb;
-  color: #243126;
-  padding: 20px;
+  border: 1px solid #c9a64b;
+  background: #244a35;
+  color: white;
+  padding: 15px;
   border-radius: 12px;
-  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.reveal h3 {
-  color: #6f3428;
+button:hover:not(:disabled) {
+  background: #376747;
+  transform: scale(1.02);
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.7;
 }
 
 .feedback {
-  color: #ffd18a;
-  min-height: 25px;
+  min-height: 55px;
+  margin: 20px 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.door {
+  display: inline-block;
+  background: #c9a64b;
+  color: #102b20;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 12px;
+}
+
+.small {
+  color: #c8c0aa;
+  font-size: 13px;
+  margin-top: 20px;
 }
 
 .hidden {
   display: none;
 }
 
-footer {
-  text-align: center;
-  color: #9eaa9f;
-  font-size: 12px;
-  margin-top: 25px;
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .question {
+    font-size: 19px;
+  }
 }
 </style>
 </head>
 
 <body>
-<main>
+<div class="container">
+  <h1>🎄 Das Weihnachtsgeheimnis 🎄</h1>
+  <p class="subtitle" id="welcome"></p>
 
-<header>
-<small>GEHEIME AKTE · DEZEMBER 2026</small>
-<h1>🎄 Operation<br>Weihnachtsgeheimnis</h1>
-<p>24 Türchen. Drei Missionen. Ein Geheimnis.</p>
-</header>
+  <div id="game">
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-<section class="card">
+    <p id="counter"></p>
+    <div class="question" id="question"></div>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+    <button id="nextButton" class="hidden" onclick="nextQuestion()">
+      Weiter
+    </button>
+  </div>
 
-<div id="welcome" style="text-align:center">
-<h2 id="greeting">Deine geheime Mission</h2>
-<p id="intro">Vier Rätsel warten auf dich. Löse sie und entdecke deine Türchennummern!</p>
+  <div id="finished" class="hidden">
+    <h2>🎁 Geschafft!</h2>
+    <p>Du hast alle 8 Rätsel gelöst. Das sind deine Adventskalendertüren:</p>
+    <div id="allDoors"></div>
+    <p class="subtitle">Viel Spaß beim Öffnen! 🎄</p>
+    <button onclick="resetGame()">Quiz zurücksetzen</button>
+  </div>
+
+  <p class="small">Das Weihnachtsgeheimnis 2026</p>
 </div>
-
-<div class="progress" id="progress">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
-<div id="game">
-<p id="stageLabel">ETAPPE 1 VON 4</p>
-<h2 id="questionTitle"></h2>
-
-<div class="puzzle" id="question"></div>
-
-<input id="answer" placeholder="Deine Antwort..." autocomplete="off">
-
-<button id="check">Antwort prüfen</button>
-<p class="feedback" id="feedback"></p>
-</div>
-
-<div id="success" class="hidden">
-<div class="reveal">
-<h3>🎉 Etappe geschafft!</h3>
-<p>Diese Türchen gehören zu dir:</p>
-<div class="numbers" id="unlockedNumbers"></div>
-</div>
-<button id="next">Weiter</button>
-</div>
-
-<div id="final" class="hidden">
-<div class="reveal">
-<h3>🎄 Mission abgeschlossen!</h3>
-<p>Das sind alle deine acht Türchennummern:</p>
-<div class="numbers" id="allNumbers"></div>
-</div>
-<p>Frohe Weihnachten! Behalte deine Nummern geheim. 🤫</p>
-</div>
-
-</section>
-
-<footer>
-OPERATION WEIHNACHTSGEHEIMNIS · 2026
-</footer>
-
-</main>
 
 <script>
 const missions = {
+  mama: {
+    name: "Mami",
+    doors: [2, 6, 8, 11, 14, 17, 19, 23],
+    questions: [
+      {
+        q: "MATHE: Was ist 15 × 4?",
+        a: ["45", "60", "55", "75"],
+        correct: 1
+      },
+      {
+        q: "MATHE: Wie viel sind 25 % von 200?",
+        a: ["25", "40", "50", "75"],
+        correct: 2
+      },
+      {
+        q: "ENGLISCH: Was bedeutet „although“ auf Deutsch?",
+        a: ["Deshalb", "Obwohl", "Danach", "Vielleicht"],
+        correct: 1
+      },
+      {
+        q: "ENGLISCH: Welche Form ist richtig?",
+        a: ["She have gone", "She has gone", "She go gone", "She going"],
+        correct: 1
+      },
+      {
+        q: "FRANZÖSISCH: Was bedeutet „Je suis fatigué(e)“?",
+        a: ["Ich bin müde", "Ich bin glücklich", "Ich habe Hunger", "Ich bin krank"],
+        correct: 0
+      },
+      {
+        q: "FRANZÖSISCH: Wie heißt „Wir gehen zur Schule“?",
+        a: ["Vous allez à l'école", "Ils vont à l'école", "Nous allons à l'école", "Je vais à l'école"],
+        correct: 2
+      },
+      {
+        q: "FRANKREICH: Wie heißt die Hauptstadt von Frankreich?",
+        a: ["Lyon", "Marseille", "Paris", "Nizza"],
+        correct: 2
+      },
+      {
+        q: "FRANKREICH: Wie heißt der berühmte Fluss, der durch Paris fließt?",
+        a: ["Rhein", "Seine", "Loire", "Rhône"],
+        correct: 1
+      }
+    ]
+  },
 
-mama: {
-name: "Mami",
-stages: [
-{
-title: "Die verschwundene Zahl",
-question: "Ich bin eine gerade Zahl. Wenn du mich verdoppelst, erhältst du zwölf. Welche Zahl bin ich?",
-answer: ["6", "sechs"],
-numbers: [2, 6]
-},
-{
-title: "Die Kalender-Spur",
-question: "Wie viele Monate liegen zwischen Januar und April? Januar und April werden nicht mitgezählt.",
-answer: ["2", "zwei"],
-numbers: [8, 11]
-},
-{
-title: "Das Familienarchiv",
-question: "Du hast 3 rote Kugeln und doppelt so viele goldene Kugeln. Wie viele Kugeln hast du insgesamt?",
-answer: ["9", "neun"],
-numbers: [14, 17]
-},
-{
-title: "Der Geburtstags-Code",
-question: "Dein besonderer Geburtstag ist am 19. Dezember. Welche Zahl gehört zu deinem Geburtstag?",
-answer: ["19", "neunzehn"],
-numbers: [19, 23]
-}
-]
-},
+  papa: {
+    name: "Dusi",
+    doors: [1, 4, 7, 10, 13, 16, 20, 22],
+    questions: [
+      {
+        q: "SIMSON: In welchem Land wurde die Simson hergestellt?",
+        a: ["Polen", "DDR", "Tschechien", "Österreich"],
+        correct: 1
+      },
+      {
+        q: "SIMSON: Wie heißt das bekannte Kleinkraftrad mit dem Namen S51?",
+        a: ["Schwalbe", "Habicht", "Sperber", "S51"],
+        correct: 3
+      },
+      {
+        q: "SIMSON: Wie viele Gänge hat eine originale S51 normalerweise?",
+        a: ["2", "3", "4", "5"],
+        correct: 2
+      },
+      {
+        q: "SIMSON: Wie heißt der Hersteller der Simson-Fahrzeuge?",
+        a: ["MZ", "Simson", "Zündapp", "Kreidler"],
+        correct: 1
+      },
+      {
+        q: "SIMSON: Welches Modell wird auch KR51 genannt?",
+        a: ["Schwalbe", "S51", "Star", "Spatz"],
+        correct: 0
+      },
+      {
+        q: "SIMSON: Wo befand sich das Simson-Werk?",
+        a: ["Dresden", "Suhl", "Leipzig", "Chemnitz"],
+        correct: 1
+      },
+      {
+        q: "SIMSON: Welchen Hubraum hat eine typische S51?",
+        a: ["50 cm³", "125 cm³", "250 cm³", "500 cm³"],
+        correct: 0
+      },
+      {
+        q: "SIMSON: Was bedeutet die Abkürzung MZA im Simson-Ersatzteilbereich?",
+        a: ["Motor-Zubehör-Anlage", "Meyer-Zweirad-Ausrüstung", "Motor-Zünd-Antrieb", "Maschinen-Zubehör-Amt"],
+        correct: 1
+      }
+    ]
+  },
 
-papa: {
-name: "Dusi",
-stages: [
-{
-title: "Der erste Zahlencode",
-question: "Setze die Zahlenreihe fort: 2, 4, 6, 8, __. Welche Zahl fehlt?",
-answer: ["10", "zehn"],
-numbers: [1, 4]
-},
-{
-title: "Das Adventsrätsel",
-question: "Ein Adventskalender hat 24 Türchen. Wie viele Türchen sind es, wenn man die Hälfte nimmt?",
-answer: ["12", "zwölf"],
-numbers: [7, 10]
-},
-{
-title: "Die geheime Zahl",
-question: "Ich denke an eine Zahl. Addiere 7 zu ihr und du erhältst 20. Welche Zahl war es?",
-answer: ["13", "dreizehn"],
-numbers: [13, 16]
-},
-{
-title: "Der letzte Code",
-question: "Ein Adventskranz hat vier Kerzen. Jede Kerze steht für fünf Lichterpunkte. Wie viele Lichterpunkte sind es zusammen?",
-answer: ["20", "zwanzig"],
-numbers: [20, 22]
-}
-]
-},
-
-luni: {
-name: "Luni",
-stages: [
-{
-title: "Das Schneemann-Rätsel",
-question: "Drei Schneemänner haben jeweils zwei Knöpfe. Wie viele Knöpfe sind es insgesamt?",
-answer: ["6", "sechs"],
-numbers: [3, 5]
-},
-{
-title: "Die geheime Botschaft",
-question: "Das Wort KATZE hat sich versteckt. Wie viele Buchstaben hat das Wort?",
-answer: ["5", "fünf"],
-numbers: [9, 12]
-},
-{
-title: "Die Sternenprobe",
-question: "Am Himmel leuchten 4 Sterne. Dann kommen 4 dazu und noch einmal 4. Wie viele Sterne sind es insgesamt?",
-answer: ["12", "zwölf"],
-numbers: [15, 18]
-},
-{
-title: "Das Geschenk-Rätsel",
-question: "Du hast 6 Geschenke. Jedes Geschenk bekommt 3 Sterne auf das Papier. Wie viele Sterne brauchst du insgesamt?",
-answer: ["18", "achtzehn"],
-numbers: [21, 24]
-}
-]
-}
+  luni: {
+    name: "Luni",
+    doors: [3, 5, 9, 12, 15, 18, 21, 24],
+    questions: [
+      {
+        q: "FAHRSCHULE: Was bedeutet ein rotes Licht an einer Ampel?",
+        a: ["Langsam fahren", "Anhalten", "Schneller fahren", "Vorfahrt beachten"],
+        correct: 1
+      },
+      {
+        q: "FAHRSCHULE: Wer hat an einer Kreuzung ohne Schilder normalerweise Vorfahrt?",
+        a: ["Der von links", "Der von rechts", "Der Schnellere", "Der Größere"],
+        correct: 1
+      },
+      {
+        q: "FAHRSCHULE: Was bedeutet ein blaues rundes Verkehrszeichen?",
+        a: ["Verbot", "Gefahr", "Vorgeschriebenes Verhalten", "Parkverbot"],
+        correct: 2
+      },
+      {
+        q: "FAHRSCHULE: Wie viel Promille Alkohol sind für Fahranfänger in der Probezeit erlaubt?",
+        a: ["0,5", "0,3", "0,0", "0,8"],
+        correct: 2
+      },
+      {
+        q: "KLETTERN: Wie nennt man das Seil, das beim Klettern zur Sicherung verwendet wird?",
+        a: ["Springseil", "Kletterseil", "Abschleppseil", "Turnseil"],
+        correct: 1
+      },
+      {
+        q: "KLETTERN: Was trägt man beim Klettern zur Sicherung am Körper?",
+        a: ["Rucksack", "Klettergurt", "Schwimmweste", "Rettungsring"],
+        correct: 1
+      },
+      {
+        q: "KLETTERN: Wie nennt man das Klettern an einer Wand ohne Seil in geringer Höhe über einer Matte?",
+        a: ["Bouldern", "Tauchen", "Abseilen", "Wandern"],
+        correct: 0
+      },
+      {
+        q: "KLETTERN: Was sollte man vor dem Klettern immer kontrollieren?",
+        a: ["Die Schuhfarbe", "Die Sicherung und den Knoten", "Die Musik", "Die Wandfarbe"],
+        correct: 1
+      }
+    ]
+  }
 };
 
 const params = new URLSearchParams(window.location.search);
 const person = (params.get("mission") || "").toLowerCase();
 const mission = missions[person];
 
-let stage = 0;
-let unlocked = [];
+let current = 0;
+let savedDoors = [];
 
-const $ = id => document.getElementById(id);
-const storageKey = "weihnachtsgeheimnis_" + person;
+const welcome = document.getElementById("welcome");
+const game = document.getElementById("game");
+const finished = document.getElementById("finished");
 
 if (!mission) {
-  $("greeting").textContent = "Geheimcode nicht gefunden";
-  $("intro").textContent = "Bitte scanne deinen persönlichen QR-Code.";
-  $("game").classList.add("hidden");
-  $("progress").classList.add("hidden");
+  welcome.textContent = "Der Geheimcode wurde nicht gefunden. Bitte scanne deinen persönlichen QR-Code.";
+  game.classList.add("hidden");
 } else {
-  $("greeting").textContent = "Hallo " + mission.name + "! 🎄";
-  $("intro").textContent = "Deine geheime Weihnachtsmission wartet. Löse vier Rätsel und entdecke deine acht Türchennummern.";
+  welcome.textContent = "Willkommen, " + mission.name + "! Löse deine 8 Rätsel, um deine Türnummern zu entdecken.";
+  loadProgress();
+  renderQuestion();
+}
 
-  const saved = JSON.parse(localStorage.getItem(storageKey) || '{"stage":0,"unlocked":[]}');
+function storageKey() {
+  return "weihnachtsgeheimnis2026_v2_" + person;
+}
 
-  stage = saved.stage || 0;
-  unlocked = saved.unlocked || [];
-
-  if (stage >= 4) {
-    showFinal();
-  } else {
-    render();
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey()));
+    if (saved && Number.isInteger(saved.current) &&
+        saved.current >= 0 && saved.current <= 8) {
+      current = saved.current;
+    }
+  } catch (e) {
+    current = 0;
   }
 }
 
 function saveProgress() {
-  localStorage.setItem(storageKey, JSON.stringify({
-    stage: stage,
-    unlocked: unlocked
+  localStorage.setItem(storageKey(), JSON.stringify({
+    current: current
   }));
 }
 
-function render() {
-  const s = mission.stages[stage];
+function renderQuestion() {
+  if (current >= 8) {
+    showFinal();
+    return;
+  }
 
-  $("game").classList.remove("hidden");
-  $("success").classList.add("hidden");
-  $("final").classList.add("hidden");
+  const item = mission.questions[current];
 
-  $("stageLabel").textContent = "ETAPPE " + (stage + 1) + " VON 4";
-  $("questionTitle").textContent = s.title;
-  $("question").textContent = s.question;
-  $("answer").value = "";
-  $("feedback").textContent = "";
+  document.getElementById("counter").textContent =
+    "Rätsel " + (current + 1) + " von 8";
 
-  [...$("progress").children].forEach((dot, i) => {
-    dot.classList.toggle("done", i < stage);
+  document.getElementById("progressBar").style.width =
+    (current / 8 * 100) + "%";
+
+  document.getElementById("question").textContent = item.q;
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("nextButton").classList.add("hidden");
+
+  const answers = document.getElementById("answers");
+  answers.innerHTML = "";
+
+  item.a.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.textContent = answer;
+    button.onclick = () => checkAnswer(index, button);
+    answers.appendChild(button);
   });
 }
 
-function checkAnswer() {
-  const value = $("answer").value.trim().toLowerCase();
+function checkAnswer(index, selectedButton) {
+  const item = mission.questions[current];
+  const buttons = document.querySelectorAll("#answers button");
+  const feedback = document.getElementById("feedback");
 
-  if (!value) {
-    $("feedback").textContent = "Bitte gib eine Antwort ein.";
-    return;
+  if (index === item.correct) {
+    buttons.forEach(button => button.disabled = true);
+
+    feedback.innerHTML =
+      "🎉 Richtig! Deine nächste Türnummer ist:" +
+      '<div class="door">' + mission.doors[current] + "</div>";
+
+    current++;
+    saveProgress();
+
+    document.getElementById("nextButton").classList.remove("hidden");
+  } else {
+    feedback.textContent = "Leider falsch! Versuch es noch einmal. 😊";
+    selectedButton.disabled = true;
   }
+}
 
-  const correct = mission.stages[stage].answer.includes(value);
-
-  if (!correct) {
-    $("feedback").textContent = "Leider noch nicht richtig. Versuch es noch einmal!";
-    return;
-  }
-
-  unlocked.push(...mission.stages[stage].numbers);
-  stage++;
-  saveProgress();
-
-  $("game").classList.add("hidden");
-  $("success").classList.remove("hidden");
-
-  $("unlockedNumbers").innerHTML =
-    mission.stages[stage - 1].numbers
-    .map(n => '<span class="number">' + n + '</span>')
-    .join("");
-
-  $("next").textContent = stage === 4 ? "Alle Nummern ansehen" : "Nächste Etappe";
+function nextQuestion() {
+  renderQuestion();
 }
 
 function showFinal() {
-  $("game").classList.add("hidden");
-  $("success").classList.add("hidden");
-  $("final").classList.remove("hidden");
+  game.classList.add("hidden");
+  finished.classList.remove("hidden");
 
-  $("progress").querySelectorAll(".dot").forEach(dot => {
-    dot.classList.add("done");
+  document.getElementById("progressBar").style.width = "100%";
+
+  const allDoors = document.getElementById("allDoors");
+  allDoors.innerHTML = "";
+
+  mission.doors.forEach(number => {
+    const door = document.createElement("span");
+    door.className = "door";
+    door.textContent = number;
+    allDoors.appendChild(door);
   });
-
-  $("allNumbers").innerHTML =
-    unlocked.slice().sort((a,b) => a-b)
-    .map(n => '<span class="number">' + n + '</span>')
-    .join("");
 }
 
-$("check").addEventListener("click", checkAnswer);
-
-$("answer").addEventListener("keydown", e => {
-  if (e.key === "Enter") checkAnswer();
-});
-
-$("next").addEventListener("click", () => {
-  if (stage >= 4) {
-    showFinal();
-  } else {
-    render();
-  }
-});
+function resetGame() {
+  localStorage.removeItem(storageKey());
+  current = 0;
+  finished.classList.add("hidden");
+  game.classList.remove("hidden");
+  renderQuestion();
+}
 </script>
 </body>
 </html>
