@@ -4,439 +4,320 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Das Weihnachtsgeheimnis 2026</title>
-
+<title>Weihnachtsgeheimnis 2026</title>
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:20px;
+  display:flex;justify-content:center;align-items:center;
+  background:radial-gradient(circle at top,#315b42,#102b20 65%,#081a13);
+  color:#fff5dc;font-family:Arial,sans-serif
 }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #fff5dc;
-  background:
-    radial-gradient(circle at top, #315b42, #102b20 65%, #081a13);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+.container{
+  width:100%;max-width:650px;padding:30px;text-align:center;
+  background:rgba(8,27,19,.96);
+  border:2px solid #c9a64b;border-radius:22px;
+  box-shadow:0 0 35px #0008
 }
-
-.container {
-  width: 100%;
-  max-width: 650px;
-  background: rgba(8, 27, 19, 0.94);
-  border: 2px solid #c9a64b;
-  border-radius: 22px;
-  padding: 30px;
-  box-shadow: 0 0 35px rgba(0,0,0,0.4);
-  text-align: center;
+h1,h2{color:#e6c66d}
+.subtitle{color:#d8d0b8;line-height:1.6}
+.progress{height:10px;background:#304b3b;border-radius:20px;margin:25px 0;overflow:hidden}
+.progress-bar{height:100%;width:0;background:#d6b451;transition:width .3s}
+.question{font-size:21px;line-height:1.5;margin:25px 0}
+.answers{display:grid;gap:12px}
+button{
+  border:1px solid #c9a64b;background:#244a35;color:white;
+  padding:15px;border-radius:12px;font-size:16px;cursor:pointer
 }
-
-h1 {
-  color: #e6c66d;
-  font-size: 30px;
-  margin-top: 0;
+button:hover:not(:disabled){background:#376747}
+button:disabled{opacity:.65;cursor:default}
+.feedback{min-height:65px;margin:20px 0;font-size:18px;line-height:1.5}
+.door{
+  display:inline-block;background:#c9a64b;color:#102b20;
+  padding:14px 22px;border-radius:12px;font-size:25px;
+  font-weight:bold;margin:10px
 }
-
-h2 {
-  color: #e6c66d;
-}
-
-.subtitle {
-  color: #d8d0b8;
-  line-height: 1.6;
-}
-
-.progress {
-  background: #304b3b;
-  height: 10px;
-  border-radius: 20px;
-  margin: 25px 0;
-  overflow: hidden;
-}
-
-.progress-bar {
-  background: #d6b451;
-  height: 100%;
-  width: 0%;
-  transition: width 0.3s;
-}
-
-.question {
-  font-size: 21px;
-  line-height: 1.5;
-  margin: 25px 0;
-}
-
-.answers {
-  display: grid;
-  gap: 12px;
-}
-
-button {
-  border: 1px solid #c9a64b;
-  background: #244a35;
-  color: white;
-  padding: 15px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover:not(:disabled) {
-  background: #376747;
-  transform: scale(1.02);
-}
-
-button:disabled {
-  cursor: default;
-  opacity: 0.7;
-}
-
-.feedback {
-  min-height: 55px;
-  margin: 20px 0;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.door {
-  display: inline-block;
-  background: #c9a64b;
-  color: #102b20;
-  padding: 14px 22px;
-  border-radius: 12px;
-  font-size: 25px;
-  font-weight: bold;
-  margin: 12px;
-}
-
-.small {
-  color: #c8c0aa;
-  font-size: 13px;
-  margin-top: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 25px;
-  }
-
-  .question {
-    font-size: 19px;
-  }
-}
+.hidden{display:none}
+.small{color:#c8c0aa;font-size:13px;margin-top:20px}
+@media(max-width:480px){.container{padding:20px}.question{font-size:19px}}
 </style>
 </head>
-
 <body>
 <div class="container">
   <h1>🎄 Das Weihnachtsgeheimnis 🎄</h1>
   <p class="subtitle" id="welcome"></p>
 
   <div id="game">
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
     <p id="counter"></p>
     <div class="question" id="question"></div>
     <div class="answers" id="answers"></div>
     <div class="feedback" id="feedback"></div>
-    <button id="nextButton" class="hidden" onclick="nextQuestion()">
-      Weiter
-    </button>
+    <button id="nextButton" class="hidden" onclick="nextQuestion()">Weiter</button>
   </div>
 
   <div id="finished" class="hidden">
     <h2>🎁 Geschafft!</h2>
-    <p>Du hast alle 8 Rätsel gelöst. Das sind deine Adventskalendertüren:</p>
+    <p>Du hast alle 8 Rätsel gelöst. Hier sind deine Türnummern:</p>
     <div id="allDoors"></div>
     <p class="subtitle">Viel Spaß beim Öffnen! 🎄</p>
-    <button onclick="resetGame()">Quiz zurücksetzen</button>
   </div>
-
   <p class="small">Das Weihnachtsgeheimnis 2026</p>
 </div>
 
 <script>
 const missions = {
   mama: {
-    name: "Mami",
-    doors: [2, 6, 8, 11, 14, 17, 19, 23],
-    questions: [
+    name:"Mami",
+    doors:[2,6,8,11,14,17,19,23],
+    questions:[
       {
-        q: "MATHE: Was ist 15 × 4?",
-        a: ["45", "60", "55", "75"],
-        correct: 1
+        q:"MATHE: Ein Artikel kostet 240 €. Er wird zuerst um 15 % reduziert und danach kostet er nochmals 20 % weniger. Wie viel kostet er jetzt?",
+        a:["163,20 €","168 €","172,80 €","180 €"],
+        correct:0
       },
       {
-        q: "MATHE: Wie viel sind 25 % von 200?",
-        a: ["25", "40", "50", "75"],
-        correct: 2
+        q:"MATHE: Löse die Gleichung: 3(2x − 4) = 2x + 12",
+        a:["x = 4","x = 5","x = 6","x = 8"],
+        correct:2
       },
       {
-        q: "ENGLISCH: Was bedeutet „although“ auf Deutsch?",
-        a: ["Deshalb", "Obwohl", "Danach", "Vielleicht"],
-        correct: 1
+        q:"ENGLISCH: Welche Form ist richtig? „If I _____ more time, I would learn another language.“",
+        a:["have","had","will have","would have"],
+        correct:1
       },
       {
-        q: "ENGLISCH: Welche Form ist richtig?",
-        a: ["She have gone", "She has gone", "She go gone", "She going"],
-        correct: 1
+        q:"ENGLISCH: Welche Zeitform steckt in diesem Satz? „She has been waiting for two hours.“",
+        a:["Simple Past","Present Perfect","Present Perfect Progressive","Past Perfect"],
+        correct:2
       },
       {
-        q: "FRANZÖSISCH: Was bedeutet „Je suis fatigué(e)“?",
-        a: ["Ich bin müde", "Ich bin glücklich", "Ich habe Hunger", "Ich bin krank"],
-        correct: 0
+        q:"FRANZÖSISCH: Welche Form ist richtig? „Hier, nous _____ au cinéma.“",
+        a:["allons","sommes allés","avons allé","aller"],
+        correct:1
       },
       {
-        q: "FRANZÖSISCH: Wie heißt „Wir gehen zur Schule“?",
-        a: ["Vous allez à l'école", "Ils vont à l'école", "Nous allons à l'école", "Je vais à l'école"],
-        correct: 2
+        q:"FRANZÖSISCH: Was bedeutet „Depuis trois ans, j'habite à Paris“?",
+        a:["Vor drei Jahren wohnte ich in Paris.","Seit drei Jahren wohne ich in Paris.","Ich werde drei Jahre in Paris wohnen.","Ich war drei Jahre in Paris."],
+        correct:1
       },
       {
-        q: "FRANKREICH: Wie heißt die Hauptstadt von Frankreich?",
-        a: ["Lyon", "Marseille", "Paris", "Nizza"],
-        correct: 2
+        q:"FRANKREICH: Welche französische Stadt liegt an der Mündung der Rhône und ist für ihren Hafen bekannt?",
+        a:["Bordeaux","Marseille","Lille","Straßburg"],
+        correct:1
       },
       {
-        q: "FRANKREICH: Wie heißt der berühmte Fluss, der durch Paris fließt?",
-        a: ["Rhein", "Seine", "Loire", "Rhône"],
-        correct: 1
+        q:"FRANKREICH: Wie heißt das französische Überseegebiet in der Karibik, das zu den Kleinen Antillen gehört?",
+        a:["Korsika","Guadeloupe","Bretagne","Normandie"],
+        correct:1
       }
     ]
   },
 
   papa: {
-    name: "Dusi",
-    doors: [1, 4, 7, 10, 13, 16, 20, 22],
-    questions: [
+    name:"Dusi",
+    doors:[1,4,7,10,13,16,20,22],
+    questions:[
       {
-        q: "SIMSON: In welchem Land wurde die Simson hergestellt?",
-        a: ["Polen", "DDR", "Tschechien", "Österreich"],
-        correct: 1
+        q:"SIMSON: Welcher Motortyp wird bei den klassischen Simson-S51-Modellen verwendet?",
+        a:["Viertaktmotor","Zweitaktmotor","Wankelmotor","Dieselmotor"],
+        correct:1
       },
       {
-        q: "SIMSON: Wie heißt das bekannte Kleinkraftrad mit dem Namen S51?",
-        a: ["Schwalbe", "Habicht", "Sperber", "S51"],
-        correct: 3
+        q:"SIMSON: Welche Aufgabe hat der Vergaser?",
+        a:["Er lädt die Batterie.","Er mischt Kraftstoff und Luft.","Er kühlt das Getriebeöl.","Er schaltet die Gänge."],
+        correct:1
       },
       {
-        q: "SIMSON: Wie viele Gänge hat eine originale S51 normalerweise?",
-        a: ["2", "3", "4", "5"],
-        correct: 2
+        q:"SIMSON: Wofür steht die Bezeichnung M541 bei einem Simson-Motor?",
+        a:["Für einen 5-Gang-Motor mit 41 PS","Für einen Motor der M500-Baureihe mit 4 Gängen","Für einen 41-cm³-Motor","Für einen 5-Takt-Motor"],
+        correct:1
       },
       {
-        q: "SIMSON: Wie heißt der Hersteller der Simson-Fahrzeuge?",
-        a: ["MZ", "Simson", "Zündapp", "Kreidler"],
-        correct: 1
+        q:"SIMSON: Welche Aufgabe hat die Zündkerze beim Zweitaktmotor?",
+        a:["Sie entzündet das verdichtete Kraftstoff-Luft-Gemisch.","Sie pumpt das Benzin in den Tank.","Sie schmiert die Kurbelwelle.","Sie regelt die Gangschaltung."],
+        correct:0
       },
       {
-        q: "SIMSON: Welches Modell wird auch KR51 genannt?",
-        a: ["Schwalbe", "S51", "Star", "Spatz"],
-        correct: 0
+        q:"SIMSON: Welches Bauteil überträgt die Kraft vom Motor zum Hinterrad?",
+        a:["Lichtmaschine","Kette und Kettenräder","Zündspule","Lenkkopflager"],
+        correct:1
       },
       {
-        q: "SIMSON: Wo befand sich das Simson-Werk?",
-        a: ["Dresden", "Suhl", "Leipzig", "Chemnitz"],
-        correct: 1
+        q:"SIMSON: In welcher Stadt befand sich das bekannte Simson-Werk?",
+        a:["Suhl","Zwickau","Dresden","Potsdam"],
+        correct:0
       },
       {
-        q: "SIMSON: Welchen Hubraum hat eine typische S51?",
-        a: ["50 cm³", "125 cm³", "250 cm³", "500 cm³"],
-        correct: 0
+        q:"SIMSON: Welche Aufgabe hat die Kupplung?",
+        a:["Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe.","Sie steuert die Beleuchtung.","Sie misst die Geschwindigkeit.","Sie kühlt den Zylinder."],
+        correct:0
       },
       {
-        q: "SIMSON: Was bedeutet die Abkürzung MZA im Simson-Ersatzteilbereich?",
-        a: ["Motor-Zubehör-Anlage", "Meyer-Zweirad-Ausrüstung", "Motor-Zünd-Antrieb", "Maschinen-Zubehör-Amt"],
-        correct: 1
+        q:"SIMSON: Was unterscheidet einen Zweitaktmotor grundsätzlich von einem Viertaktmotor?",
+        a:["Er benötigt immer zwei Zündkerzen.","Ein Arbeitszyklus erfolgt in zwei Kolbenhüben statt vier.","Er hat grundsätzlich keinen Kolben.","Er läuft nur mit Diesel."],
+        correct:1
       }
     ]
   },
 
   luni: {
-    name: "Luni",
-    doors: [3, 5, 9, 12, 15, 18, 21, 24],
-    questions: [
+    name:"Luni",
+    doors:[3,5,9,12,15,18,21,24],
+    questions:[
       {
-        q: "FAHRSCHULE: Was bedeutet ein rotes Licht an einer Ampel?",
-        a: ["Langsam fahren", "Anhalten", "Schneller fahren", "Vorfahrt beachten"],
-        correct: 1
+        q:"FAHRSCHULE: Du kommst an eine Kreuzung ohne Verkehrszeichen. Von rechts kommt ein Auto. Was gilt grundsätzlich?",
+        a:["Du hast Vorfahrt.","Rechts vor links.","Das größere Fahrzeug hat Vorfahrt.","Wer zuerst hupt, darf fahren."],
+        correct:1
       },
       {
-        q: "FAHRSCHULE: Wer hat an einer Kreuzung ohne Schilder normalerweise Vorfahrt?",
-        a: ["Der von links", "Der von rechts", "Der Schnellere", "Der Größere"],
-        correct: 1
+        q:"FAHRSCHULE: Was bedeutet ein rundes blaues Verkehrszeichen mit weißem Pfeil nach rechts?",
+        a:["Rechts abbiegen ist verboten.","Vorgeschriebene Fahrtrichtung rechts.","Einbahnstraße endet.","Achtung, Kurve."],
+        correct:1
       },
       {
-        q: "FAHRSCHULE: Was bedeutet ein blaues rundes Verkehrszeichen?",
-        a: ["Verbot", "Gefahr", "Vorgeschriebenes Verhalten", "Parkverbot"],
-        correct: 2
+        q:"FAHRSCHULE: Wie lange dauert die reguläre Probezeit beim erstmaligen Erwerb einer Fahrerlaubnis?",
+        a:["Ein Jahr","Zwei Jahre","Drei Jahre","Vier Jahre"],
+        correct:1
       },
       {
-        q: "FAHRSCHULE: Wie viel Promille Alkohol sind für Fahranfänger in der Probezeit erlaubt?",
-        a: ["0,5", "0,3", "0,0", "0,8"],
-        correct: 2
+        q:"FAHRSCHULE: Du fährst auf eine Autobahn auf. Welches Verhalten ist richtig?",
+        a:["Auf dem Beschleunigungsstreifen die Geschwindigkeit anpassen und eine passende Lücke suchen.","Auf dem Beschleunigungsstreifen sofort anhalten.","Immer Vorfahrt erzwingen.","Auf dem Standstreifen weiterfahren."],
+        correct:0
       },
       {
-        q: "KLETTERN: Wie nennt man das Seil, das beim Klettern zur Sicherung verwendet wird?",
-        a: ["Springseil", "Kletterseil", "Abschleppseil", "Turnseil"],
-        correct: 1
+        q:"KLETTERN: Wie heißt der Knoten, der häufig zum Einbinden ins Kletterseil verwendet wird?",
+        a:["Palstek","Achterknoten","Kreuzknoten","Schotstek"],
+        correct:1
       },
       {
-        q: "KLETTERN: Was trägt man beim Klettern zur Sicherung am Körper?",
-        a: ["Rucksack", "Klettergurt", "Schwimmweste", "Rettungsring"],
-        correct: 1
+        q:"KLETTERN: Was ist ein Partnercheck vor dem Klettern?",
+        a:["Man kontrolliert gegenseitig Gurt, Knoten, Sicherungsgerät und Seil.","Man prüft, wer schneller klettert.","Man vergleicht die Kletterschuhe.","Man zählt die Griffe an der Wand."],
+        correct:0
       },
       {
-        q: "KLETTERN: Wie nennt man das Klettern an einer Wand ohne Seil in geringer Höhe über einer Matte?",
-        a: ["Bouldern", "Tauchen", "Abseilen", "Wandern"],
-        correct: 0
+        q:"KLETTERN: Was versteht man unter „Bouldern“?",
+        a:["Klettern an hohen Wänden mit Seil.","Klettern in geringer Höhe ohne Seil über Matten.","Klettern an gefrorenen Wasserfällen.","Klettern mit Steigeisen."],
+        correct:1
       },
       {
-        q: "KLETTERN: Was sollte man vor dem Klettern immer kontrollieren?",
-        a: ["Die Schuhfarbe", "Die Sicherung und den Knoten", "Die Musik", "Die Wandfarbe"],
-        correct: 1
+        q:"KLETTERN: Welche Aufgabe hat ein Sicherungsgerät beim Sportklettern?",
+        a:["Es macht das Seil länger.","Es hilft, das Seil kontrolliert zu halten und den Kletternden zu sichern.","Es verhindert, dass man abrutscht.","Es ersetzt den Klettergurt."],
+        correct:1
       }
     ]
   }
 };
 
-const params = new URLSearchParams(window.location.search);
-const person = (params.get("mission") || "").toLowerCase();
-const mission = missions[person];
+const params=new URLSearchParams(window.location.search);
+const person=(params.get("mission")||"").toLowerCase();
+const mission=missions[person];
 
-let current = 0;
-let savedDoors = [];
+let current=0;
+let answered=false;
 
-const welcome = document.getElementById("welcome");
-const game = document.getElementById("game");
-const finished = document.getElementById("finished");
+const game=document.getElementById("game");
+const finished=document.getElementById("finished");
 
-if (!mission) {
-  welcome.textContent = "Der Geheimcode wurde nicht gefunden. Bitte scanne deinen persönlichen QR-Code.";
+if(!mission){
+  document.getElementById("welcome").textContent=
+    "Geheimcode nicht gefunden. Bitte deinen persönlichen QR-Code scannen.";
   game.classList.add("hidden");
-} else {
-  welcome.textContent = "Willkommen, " + mission.name + "! Löse deine 8 Rätsel, um deine Türnummern zu entdecken.";
+}else{
+  document.getElementById("welcome").textContent=
+    "Willkommen, "+mission.name+"! Löse die 8 schwierigen Rätsel und entdecke deine Türnummern.";
   loadProgress();
   renderQuestion();
 }
 
-function storageKey() {
-  return "weihnachtsgeheimnis2026_v2_" + person;
+function storageKey(){
+  return "weihnachtsgeheimnis2026_hard_"+person;
 }
 
-function loadProgress() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey()));
-    if (saved && Number.isInteger(saved.current) &&
-        saved.current >= 0 && saved.current <= 8) {
-      current = saved.current;
+function loadProgress(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(storageKey()));
+    if(saved && Number.isInteger(saved.current) && saved.current>=0 && saved.current<=8){
+      current=saved.current;
     }
-  } catch (e) {
-    current = 0;
+  }catch(e){
+    current=0;
   }
 }
 
-function saveProgress() {
-  localStorage.setItem(storageKey(), JSON.stringify({
-    current: current
-  }));
+function saveProgress(){
+  localStorage.setItem(storageKey(),JSON.stringify({current:current}));
 }
 
-function renderQuestion() {
-  if (current >= 8) {
+function renderQuestion(){
+  if(current>=8){
     showFinal();
     return;
   }
 
-  const item = mission.questions[current];
+  answered=false;
+  const item=mission.questions[current];
 
-  document.getElementById("counter").textContent =
-    "Rätsel " + (current + 1) + " von 8";
-
-  document.getElementById("progressBar").style.width =
-    (current / 8 * 100) + "%";
-
-  document.getElementById("question").textContent = item.q;
-
-  document.getElementById("feedback").textContent = "";
+  document.getElementById("counter").textContent=
+    "Rätsel "+(current+1)+" von 8";
+  document.getElementById("progressBar").style.width=
+    (current/8*100)+"%";
+  document.getElementById("question").textContent=item.q;
+  document.getElementById("feedback").textContent="";
   document.getElementById("nextButton").classList.add("hidden");
 
-  const answers = document.getElementById("answers");
-  answers.innerHTML = "";
+  const area=document.getElementById("answers");
+  area.innerHTML="";
 
-  item.a.forEach((answer, index) => {
-    const button = document.createElement("button");
-    button.textContent = answer;
-    button.onclick = () => checkAnswer(index, button);
-    answers.appendChild(button);
+  item.a.forEach((answer,index)=>{
+    const button=document.createElement("button");
+    button.textContent=answer;
+    button.onclick=()=>checkAnswer(index,button);
+    area.appendChild(button);
   });
 }
 
-function checkAnswer(index, selectedButton) {
-  const item = mission.questions[current];
-  const buttons = document.querySelectorAll("#answers button");
-  const feedback = document.getElementById("feedback");
+function checkAnswer(index,selected){
+  if(answered)return;
 
-  if (index === item.correct) {
-    buttons.forEach(button => button.disabled = true);
+  const item=mission.questions[current];
+  const buttons=document.querySelectorAll("#answers button");
+  const feedback=document.getElementById("feedback");
 
-    feedback.innerHTML =
-      "🎉 Richtig! Deine nächste Türnummer ist:" +
-      '<div class="door">' + mission.doors[current] + "</div>";
+  if(index===item.correct){
+    answered=true;
+    buttons.forEach(b=>b.disabled=true);
+
+    feedback.innerHTML=
+      "🎉 Richtig! Deine Türnummer ist:<br>"+
+      '<span class="door">'+mission.doors[current]+"</span>";
 
     current++;
     saveProgress();
-
     document.getElementById("nextButton").classList.remove("hidden");
-  } else {
-    feedback.textContent = "Leider falsch! Versuch es noch einmal. 😊";
-    selectedButton.disabled = true;
+  }else{
+    feedback.textContent="Leider falsch! Denk noch einmal nach und versuche es erneut. 😊";
+    selected.disabled=true;
   }
 }
 
-function nextQuestion() {
+function nextQuestion(){
   renderQuestion();
 }
 
-function showFinal() {
+function showFinal(){
   game.classList.add("hidden");
   finished.classList.remove("hidden");
-
-  document.getElementById("progressBar").style.width = "100%";
-
-  const allDoors = document.getElementById("allDoors");
-  allDoors.innerHTML = "";
-
-  mission.doors.forEach(number => {
-    const door = document.createElement("span");
-    door.className = "door";
-    door.textContent = number;
-    allDoors.appendChild(door);
+  const area=document.getElementById("allDoors");
+  area.innerHTML="";
+  mission.doors.forEach(number=>{
+    const door=document.createElement("span");
+    door.className="door";
+    door.textContent=number;
+    area.appendChild(door);
   });
 }
 
-function resetGame() {
-  localStorage.removeItem(storageKey());
-  current = 0;
-  finished.classList.add("hidden");
-  game.classList.remove("hidden");
-  renderQuestion();
-}
 </script>
 </body>
 </html>
