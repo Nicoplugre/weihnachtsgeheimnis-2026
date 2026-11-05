@@ -77,7 +77,7 @@ button{cursor:pointer}
  <div class="tree">🎄</div>
  <h2 id="welcomeTitle">Willkommen!</h2>
  <p class="subtitle" id="welcomeText"></p>
- <p class="subtitle">Schaffst du alle 12 Fragen?</p>
+ <p class="subtitle">Schaffst du alle 16 Fragen?</p>
  <button class="start-button" id="startButton" onclick="startQuiz()">🎁 Quiz starten</button>
  <div class="decoration">✦ ❄ ✦ ❄ ✦</div>
 </div>
@@ -86,8 +86,8 @@ button{cursor:pointer}
  <h1>🎄 Weihnachtsquiz 🎄</h1>
  <p class="subtitle" id="quizWelcome"></p>
  <div class="stats">
-  <span id="counter">Frage 1 von 12</span>
-  <span id="errors">Fehler: 0 / 10</span>
+  <span id="counter">Frage 1 von 16</span>
+  <span id="errors">Fehler: 0 / 7</span>
  </div>
  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
  <div class="question" id="question"></div>
@@ -99,7 +99,7 @@ button{cursor:pointer}
 <div id="finished" class="hidden">
  <div class="tree">🎄</div>
  <h1>Geschafft!</h1>
- <p class="subtitle">Du hast alle 12 Fragen beantwortet!</p>
+ <p class="subtitle">Du hast alle 16 Fragen beantwortet!</p>
  <p id="finalErrors"></p>
  <h2>Deine 8 Türnummern:</h2>
  <div id="allDoors"></div>
@@ -112,63 +112,77 @@ button{cursor:pointer}
 
 <script>
 const missions={
+
 mama:{
  name:"Mami",
  doors:[2,6,8,11,14,17,19,23],
  questions:[
- {q:"MATHE: Ein Artikel kostet 240 €. Zuerst gibt es 15 % Rabatt, danach nochmals 20 % auf den reduzierten Preis. Wie viel kostet er am Ende?",a:["163,20 €","168 €","172,80 €","180 €"],correct:0},
- {q:"MATHE: Löse die Gleichung: 3(2x − 4) = 2x + 12",a:["x = 4","x = 5","x = 6","x = 8"],correct:2},
- {q:"ENGLISCH: If I _____ more time, I would learn another language.",a:["have","had","will have","would have"],correct:1},
- {q:"ENGLISCH: Welche Zeitform ist das? She has been waiting for two hours.",a:["Simple Past","Present Perfect","Present Perfect Progressive","Past Perfect"],correct:2},
- {q:"ENGLISCH: If she had studied harder, she _____ the exam.",a:["will pass","would pass","would have passed","has passed"],correct:2},
- {q:"ENGLISCH: Welche Aussage ist grammatikalisch richtig?",a:["He doesn't likes coffee.","He don't like coffee.","He doesn't like coffee.","He not like coffee."],correct:2},
- {q:"FRANZÖSISCH: Hier, nous _____ au cinéma.",a:["allons","sommes allés","avons allé","aller"],correct:1},
- {q:"FRANZÖSISCH: Was bedeutet: Depuis trois ans, j'habite à Paris?",a:["Vor drei Jahren wohnte ich in Paris.","Seit drei Jahren wohne ich in Paris.","Ich werde drei Jahre in Paris wohnen.","Ich war drei Jahre in Paris."],correct:1},
- {q:"FRANZÖSISCH: Welches Wort bedeutet „obwohl“?",a:["parce que","mais","bien que","donc"],correct:2},
- {q:"FRANKREICH: Welcher Fluss fließt durch Paris?",a:["Loire","Seine","Rhône","Garonne"],correct:1},
- {q:"FRANKREICH: Welche Stadt ist für ihren großen Hafen am Mittelmeer bekannt?",a:["Marseille","Lille","Straßburg","Dijon"],correct:0},
- {q:"FRANKREICH: Wie heißt das französische Überseegebiet in der Karibik?",a:["Korsika","Guadeloupe","Bretagne","Normandie"],correct:1}
+ ["MATHE: Wie viel sind 15 % von 240 €?",["24 €","30 €","36 €","40 €"],2],
+ ["MATHE: Löse: 3(2x − 4) = 2x + 12",["x = 4","x = 5","x = 6","x = 8"],2],
+ ["ENGLISCH: If I _____ more time, I would learn another language.",["have","had","will have","would have"],1],
+ ["ENGLISCH: Welche Zeitform ist das? She has been waiting for two hours.",["Simple Past","Present Perfect","Present Perfect Progressive","Past Perfect"],2],
+ ["ENGLISCH: If she had studied harder, she _____ the exam.",["will pass","would pass","would have passed","has passed"],2],
+ ["ENGLISCH: Welche Aussage ist richtig?",["He doesn't likes coffee.","He don't like coffee.","He doesn't like coffee.","He not like coffee."],2],
+ ["FRANZÖSISCH: Hier, nous _____ au cinéma.",["allons","sommes allés","avons allé","aller"],1],
+ ["FRANZÖSISCH: Was bedeutet: Depuis trois ans, j'habite à Paris?",["Vor drei Jahren wohnte ich in Paris.","Seit drei Jahren wohne ich in Paris.","Ich werde drei Jahre in Paris wohnen.","Ich war drei Jahre in Paris."],1],
+ ["FRANZÖSISCH: Welches Wort bedeutet „obwohl“?",["parce que","mais","bien que","donc"],2],
+ ["FRANKREICH: Welcher Fluss fließt durch Paris?",["Loire","Seine","Rhône","Garonne"],1],
+ ["FRANKREICH: Welche Stadt hat einen großen Hafen am Mittelmeer?",["Marseille","Lille","Straßburg","Dijon"],0],
+ ["FRANKREICH: Wie heißt das französische Überseegebiet in der Karibik?",["Korsika","Guadeloupe","Bretagne","Normandie"],1],
+ ["ENGLISCH: Was ist die richtige Form? She _____ to London last year.",["has gone","goes","went","gone"],2],
+ ["FRANZÖSISCH: Was bedeutet „Je voudrais un café“?",["Ich trinke einen Kaffee.","Ich möchte einen Kaffee.","Ich habe einen Kaffee.","Ich kaufe keinen Kaffee."],1],
+ ["FRANKREICH: Wie heißt die französische Nationalhymne?",["La Marseillaise","La Liberté","Le Chant de Paris","La France"],0],
+ ["MATHE: Ein Pullover kostet 80 €. Er wird um 25 % reduziert. Wie viel kostet er danach?",["50 €","55 €","60 €","65 €"],2]
  ]},
 
 papa:{
  name:"Dusi",
  doors:[1,4,7,10,13,16,20,22],
  questions:[
- {q:"SIMSON: Welcher Motortyp wird bei der klassischen S51 verwendet?",a:["Viertaktmotor","Zweitaktmotor","Wankelmotor","Dieselmotor"],correct:1},
- {q:"SIMSON: Welche Aufgabe hat der Vergaser?",a:["Er lädt die Batterie.","Er mischt Kraftstoff und Luft.","Er schaltet die Gänge.","Er kühlt das Getriebeöl."],correct:1},
- {q:"SIMSON: Was bedeutet die Bezeichnung M541?",a:["Ein Motor mit 5 Gängen und 41 PS","Ein Motor der M500-Baureihe mit 4 Gängen","Ein 41-cm³-Motor","Ein 5-Takt-Motor"],correct:1},
- {q:"SIMSON: Welche Aufgabe hat die Zündkerze?",a:["Sie entzündet das verdichtete Kraftstoff-Luft-Gemisch.","Sie pumpt Benzin in den Tank.","Sie schmiert die Kurbelwelle.","Sie regelt die Gangschaltung."],correct:0},
- {q:"SIMSON: Welches Bauteil überträgt die Kraft vom Motor zum Hinterrad?",a:["Lichtmaschine","Kette und Kettenräder","Zündspule","Lenkkopflager"],correct:1},
- {q:"SIMSON: In welcher Stadt befand sich das bekannte Simson-Werk?",a:["Suhl","Zwickau","Dresden","Potsdam"],correct:0},
- {q:"SIMSON: Welche Aufgabe hat die Kupplung?",a:["Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe.","Sie steuert die Beleuchtung.","Sie misst die Geschwindigkeit.","Sie kühlt den Zylinder."],correct:0},
- {q:"SIMSON: Wie viele Gänge hat die originale S51 mit M541-Motor?",a:["2","3","4","5"],correct:2},
- {q:"SIMSON: Was bedeutet das Kürzel KR bei der KR51/1 Schwalbe?",a:["Kraftrad","Kleinroller","Kettenrad","Kleinrennmaschine"],correct:1},
- {q:"SIMSON: Welche Funktion hat die Lichtmaschine?",a:["Sie erzeugt elektrische Energie für elektrische Verbraucher und die Zündung.","Sie pumpt Öl in den Motor.","Sie regelt den Benzinfluss.","Sie kühlt den Vergaser."],correct:0},
- {q:"SIMSON: Was ist das Besondere am Gemischschmiersystem eines klassischen Zweitaktmotors?",a:["Das Öl wird dem Kraftstoff beigemischt.","Das Öl wird nur auf die Reifen gesprüht.","Der Motor braucht überhaupt kein Öl.","Das Öl wird im Kühler gespeichert."],correct:0},
- {q:"SIMSON: Welcher Hubraum ist für die klassische S51 typisch?",a:["50 cm³","80 cm³","125 cm³","250 cm³"],correct:0}
+ ["SIMSON: Welcher Motortyp wird bei der klassischen S51 verwendet?",["Viertaktmotor","Zweitaktmotor","Wankelmotor","Dieselmotor"],1],
+ ["SIMSON: Welche Aufgabe hat der Vergaser?",["Er lädt die Batterie.","Er mischt Kraftstoff und Luft.","Er schaltet die Gänge.","Er kühlt das Getriebeöl."],1],
+ ["SIMSON: Was bedeutet die Bezeichnung M541?",["5 Gänge und 41 PS","Motor der M500-Baureihe mit 4 Gängen","41 cm³ Hubraum","Ein 5-Takt-Motor"],1],
+ ["SIMSON: Welche Aufgabe hat die Zündkerze?",["Sie entzündet das Kraftstoff-Luft-Gemisch.","Sie pumpt Benzin in den Tank.","Sie schmiert die Kurbelwelle.","Sie regelt die Gangschaltung."],0],
+ ["SIMSON: Was überträgt die Kraft zum Hinterrad?",["Lichtmaschine","Kette und Kettenräder","Zündspule","Lenkkopflager"],1],
+ ["SIMSON: In welcher Stadt befand sich das Simson-Werk?",["Suhl","Zwickau","Dresden","Potsdam"],0],
+ ["SIMSON: Welche Aufgabe hat die Kupplung?",["Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe.","Sie steuert die Beleuchtung.","Sie misst die Geschwindigkeit.","Sie kühlt den Zylinder."],0],
+ ["SIMSON: Wie viele Gänge hat die originale S51 mit M541-Motor?",["2","3","4","5"],2],
+ ["SIMSON: Was bedeutet das Kürzel KR bei KR51/1?",["Kraftrad","Kleinroller","Kettenrad","Kleinrennmaschine"],1],
+ ["SIMSON: Welche Funktion hat die Lichtmaschine?",["Sie erzeugt elektrische Energie.","Sie pumpt Öl in den Motor.","Sie regelt den Benzinfluss.","Sie kühlt den Vergaser."],0],
+ ["SIMSON: Wie wird ein klassischer Zweitaktmotor geschmiert?",["Öl wird dem Kraftstoff beigemischt.","Öl wird auf die Reifen gesprüht.","Er braucht kein Öl.","Öl wird im Kühler gespeichert."],0],
+ ["SIMSON: Welcher Hubraum ist für die S51 typisch?",["50 cm³","80 cm³","125 cm³","250 cm³"],0],
+ ["SIMSON: Welche Aufgabe hat der Kolben?",["Er verdichtet das Gemisch und überträgt die Verbrennungskraft.","Er steuert die Beleuchtung.","Er kühlt den Tank.","Er schaltet die Gänge."],0],
+ ["SIMSON: Wofür ist das Ritzel vorne an der Kette da?",["Es überträgt die Kraft vom Motor auf die Kette.","Es erzeugt Strom.","Es bremst das Vorderrad.","Es regelt den Vergaser."],0],
+ ["SIMSON: Was passiert, wenn der Zündzeitpunkt falsch eingestellt ist?",["Der Motor kann schlecht laufen oder Leistung verlieren.","Die Reifen werden größer.","Die Kette wird länger.","Die Beleuchtung wird heller."],0],
+ ["SIMSON: Welche Aufgabe hat der Luftfilter?",["Er reinigt die angesaugte Luft.","Er filtert das Getriebeöl.","Er kühlt den Auspuff.","Er lädt die Batterie."],0]
  ]},
 
 luni:{
  name:"Luni",
  doors:[3,5,9,12,15,18,21,24],
  questions:[
- {q:"FAHRSCHULE: Du kommst an eine Kreuzung ohne Verkehrszeichen. Von rechts kommt ein Auto. Was gilt grundsätzlich?",a:["Du hast Vorfahrt.","Rechts vor links.","Das größere Fahrzeug hat Vorfahrt.","Wer zuerst hupt, darf fahren."],correct:1},
- {q:"FAHRSCHULE: Was bedeutet ein rundes blaues Verkehrszeichen mit weißem Pfeil nach rechts?",a:["Rechts abbiegen ist verboten.","Vorgeschriebene Fahrtrichtung rechts.","Einbahnstraße endet.","Achtung, Kurve."],correct:1},
- {q:"FAHRSCHULE: Wie lange dauert die reguläre Probezeit beim erstmaligen Erwerb einer Fahrerlaubnis?",a:["Ein Jahr","Zwei Jahre","Drei Jahre","Vier Jahre"],correct:1},
- {q:"FAHRSCHULE: Du fährst auf eine Autobahn auf. Was ist richtig?",a:["Auf dem Beschleunigungsstreifen Geschwindigkeit anpassen und eine passende Lücke suchen.","Sofort auf dem Beschleunigungsstreifen anhalten.","Vorfahrt erzwingen.","Auf dem Standstreifen weiterfahren."],correct:0},
- {q:"FAHRSCHULE: Was gilt beim Überholen unmittelbar vor einem Fußgängerüberweg?",a:["Überholen ist erlaubt, wenn niemand zu sehen ist.","Überholen ist verboten.","Nur Motorräder dürfen überholen.","Man darf hupen und überholen."],correct:1},
- {q:"FAHRSCHULE: Was gilt beim Abbiegen gegenüber Fußgängern, die die Straße überqueren, in die man einbiegt?",a:["Sie müssen immer warten.","Man muss ihnen das Überqueren ermöglichen und nötigenfalls warten.","Nur bei einer roten Ampel muss man warten.","Es gilt immer rechts vor links."],correct:1},
- {q:"KLETTERN: Wie heißt der Knoten, der häufig zum Einbinden ins Kletterseil verwendet wird?",a:["Palstek","Achterknoten","Kreuzknoten","Schotstek"],correct:1},
- {q:"KLETTERN: Was wird beim Partnercheck vor dem Klettern kontrolliert?",a:["Gurt, Knoten, Sicherungsgerät und Seil.","Nur die Kletterschuhe.","Nur die Farbe des Seils.","Die Anzahl der Griffe."],correct:0},
- {q:"KLETTERN: Was versteht man unter Bouldern?",a:["Klettern an hohen Wänden mit Seil.","Klettern in geringer Höhe ohne Seil über Matten.","Klettern an gefrorenen Wasserfällen.","Klettern mit Steigeisen."],correct:1},
- {q:"KLETTERN: Was bedeutet beim Klettern dynamisches Sichern?",a:["Die Sicherungsperson gibt kontrolliert etwas Seil, um einen Sturz etwas weicher abzufangen.","Man lässt das Seil vollständig los.","Man klettert ohne Sicherung.","Man zieht das Seil immer maximal straff."],correct:0},
- {q:"KLETTERN: Warum sollte ein Kletterseil vor und nach dem Klettern kontrolliert werden?",a:["Um Schäden wie Schnitte, starke Abnutzung oder ungewöhnliche Stellen zu erkennen.","Damit es seine Farbe behält.","Damit es länger wird.","Damit es weniger wiegt."],correct:0},
- {q:"KLETTERN: Was beschreibt der Begriff Vorstieg?",a:["Man klettert eine Route und hängt das Seil während des Aufstiegs in Zwischensicherungen ein.","Man klettert immer ohne Seil.","Man klettert nur an einer Boulderwand.","Man steigt auf einer Treppe zur Kletterwand."],correct:0}
+ ["FAHRSCHULE: An einer Kreuzung ohne Verkehrszeichen kommt ein Auto von rechts. Was gilt?",["Du hast Vorfahrt.","Rechts vor links.","Das größere Fahrzeug hat Vorfahrt.","Wer zuerst hupt, darf fahren."],1],
+ ["FAHRSCHULE: Was bedeutet ein rundes blaues Verkehrszeichen mit weißem Pfeil nach rechts?",["Rechts abbiegen ist verboten.","Vorgeschriebene Fahrtrichtung rechts.","Einbahnstraße endet.","Achtung, Kurve."],1],
+ ["FAHRSCHULE: Wie lange dauert die reguläre Probezeit beim erstmaligen Erwerb einer Fahrerlaubnis?",["Ein Jahr","Zwei Jahre","Drei Jahre","Vier Jahre"],1],
+ ["FAHRSCHULE: Was ist beim Auffahren auf die Autobahn richtig?",["Geschwindigkeit anpassen und eine passende Lücke suchen.","Sofort anhalten.","Vorfahrt erzwingen.","Auf dem Standstreifen weiterfahren."],0],
+ ["FAHRSCHULE: Was gilt beim Überholen unmittelbar vor einem Fußgängerüberweg?",["Überholen ist erlaubt.","Überholen ist verboten.","Nur Motorräder dürfen überholen.","Man darf hupen und überholen."],1],
+ ["FAHRSCHULE: Was gilt beim Abbiegen gegenüber Fußgängern?",["Sie müssen immer warten.","Man muss ihnen das Überqueren ermöglichen und nötigenfalls warten.","Nur bei roter Ampel muss man warten.","Es gilt immer rechts vor links."],1],
+ ["FAHRSCHULE: Was bedeutet ein gelbes Dreieck mit rotem Rand?",["Vorfahrtstraße","Gefahrstelle","Verbot der Einfahrt","Parkplatz"],1],
+ ["FAHRSCHULE: Wann muss man vor einem Bahnübergang warten?",["Wenn rotes Licht blinkt oder die Schranke geschlossen wird.","Nur nachts.","Nur wenn ein Auto vor einem wartet.","Nie."],0],
+ ["KLETTERN: Wie heißt der Knoten, der häufig zum Einbinden ins Kletterseil verwendet wird?",["Palstek","Achterknoten","Kreuzknoten","Schotstek"],1],
+ ["KLETTERN: Was wird beim Partnercheck kontrolliert?",["Gurt, Knoten, Sicherungsgerät und Seil.","Nur die Kletterschuhe.","Nur die Farbe des Seils.","Die Anzahl der Griffe."],0],
+ ["KLETTERN: Was versteht man unter Bouldern?",["Klettern an hohen Wänden mit Seil.","Klettern in geringer Höhe ohne Seil über Matten.","Klettern an gefrorenen Wasserfällen.","Klettern mit Steigeisen."],1],
+ ["KLETTERN: Was bedeutet dynamisches Sichern?",["Kontrolliert etwas Seil geben, um einen Sturz etwas weicher abzufangen.","Das Seil vollständig loslassen.","Ohne Sicherung klettern.","Das Seil immer maximal straff ziehen."],0],
+ ["KLETTERN: Warum kontrolliert man ein Kletterseil?",["Um Schäden und Abnutzung zu erkennen.","Damit es seine Farbe behält.","Damit es länger wird.","Damit es weniger wiegt."],0],
+ ["KLETTERN: Was bedeutet Vorstieg?",["Man hängt das Seil beim Aufstieg in Zwischensicherungen ein.","Man klettert ohne Seil.","Man klettert nur an einer Boulderwand.","Man steigt auf einer Treppe."],0],
+ ["KLETTERN: Was ist eine Expressschlinge?",["Zwei Karabiner, die durch eine Bandschlinge verbunden sind.","Ein besonderer Kletterhelm.","Ein Kletterschuh.","Ein Sicherungsgerät."],0],
+ ["KLETTERN: Warum sollte man beim Klettern auf die richtige Sicherung achten?",["Damit Stürze möglichst sicher abgefangen werden.","Damit man schneller klettert.","Damit die Wand nicht beschädigt wird.","Damit man weniger Pausen braucht."],0]
  ]}
 };
 
-const rewardQuestions=[0,1,3,4,6,7,9,11];
-const MAX_ERRORS=10;
+const rewardQuestions=[1,3,5,7,9,11,13,15];
+const MAX_ERRORS=7;
+
 const params=new URLSearchParams(location.search);
 let person=(params.get("mission")||"").trim().toLowerCase();
 if(person==="mami")person="mama";
@@ -183,45 +197,33 @@ const game=document.getElementById("game");
 const finished=document.getElementById("finished");
 
 function storageKey(){
- return "weihnachtsgeheimnis_2026_version_10_"+person;
+ return "weihnachtsgeheimnis_2026_v16_e7_"+person;
 }
 
 function saveProgress(){
- localStorage.setItem(storageKey(),JSON.stringify({
-  current:current,
-  errors:errors,
-  unlocked:unlocked
- }));
+ localStorage.setItem(storageKey(),JSON.stringify({current,errors,unlocked}));
 }
 
 function loadProgress(){
  try{
   const saved=JSON.parse(localStorage.getItem(storageKey()));
-  if(saved &&
-     Number.isInteger(saved.current) &&
-     Number.isInteger(saved.errors) &&
-     saved.current>=0 && saved.current<12 &&
-     saved.errors>=0 && saved.errors<MAX_ERRORS &&
-     Array.isArray(saved.unlocked)){
+  if(saved&&Number.isInteger(saved.current)&&Number.isInteger(saved.errors)
+   &&saved.current>=0&&saved.current<16
+   &&saved.errors>=0&&saved.errors<MAX_ERRORS
+   &&Array.isArray(saved.unlocked)){
     current=saved.current;
     errors=saved.errors;
     unlocked=saved.unlocked;
   }
- }catch(e){
-  current=0;
-  errors=0;
-  unlocked=[];
- }
+ }catch(e){}
 }
 
 if(mission){
  document.getElementById("welcomeTitle").textContent="Willkommen, "+mission.name+"! 🎄";
  document.getElementById("welcomeText").textContent=
- "Deine persönliche Weihnachtsmission wartet! Beantworte 12 Fragen und sammle deine 8 geheimen Türnummern. Du hast 10 Fehler frei!";
+ "Deine persönliche Weihnachtsmission wartet! Beantworte 16 Fragen und sammle deine 8 geheimen Türnummern. Du hast 7 Fehler frei!";
  loadProgress();
- if(current>0){
-  document.getElementById("startButton").textContent="🎁 Quiz fortsetzen";
- }
+ if(current>0)document.getElementById("startButton").textContent="🎁 Quiz fortsetzen";
 }else{
  document.getElementById("welcomeTitle").textContent="Willkommen!";
  document.getElementById("welcomeText").textContent="Bitte nutze deinen persönlichen QR-Code.";
@@ -240,26 +242,22 @@ function startQuiz(){
 }
 
 function updateStats(){
- document.getElementById("counter").textContent=
- "Frage "+Math.min(current+1,12)+" von 12";
- document.getElementById("errors").textContent=
- "Fehler: "+errors+" / "+MAX_ERRORS;
- document.getElementById("progressBar").style.width=
- (Math.min(current,12)/12*100)+"%";
+ document.getElementById("counter").textContent="Frage "+Math.min(current+1,16)+" von 16";
+ document.getElementById("errors").textContent="Fehler: "+errors+" / 7";
+ document.getElementById("progressBar").style.width=(Math.min(current,16)/16*100)+"%";
 }
 
 function renderQuestion(){
  answered=false;
  const item=mission.questions[current];
  updateStats();
- document.getElementById("question").textContent=item.q;
+ document.getElementById("question").textContent=item[0];
  document.getElementById("feedback").textContent="";
  document.getElementById("nextButton").classList.add("hidden");
-
  const area=document.getElementById("answers");
  area.innerHTML="";
 
- item.a.forEach((answer,index)=>{
+ item[1].forEach((answer,index)=>{
   const button=document.createElement("button");
   button.textContent=answer;
   button.onclick=()=>checkAnswer(index,button);
@@ -274,15 +272,14 @@ function checkAnswer(index,selected){
  const buttons=document.querySelectorAll("#answers button");
  const feedback=document.getElementById("feedback");
 
- if(index===item.correct){
+ if(index===item[2]){
   answered=true;
   buttons.forEach(button=>button.disabled=true);
 
   if(rewardQuestions.includes(current)){
    const door=mission.doors[rewardQuestions.indexOf(current)];
    if(!unlocked.includes(door))unlocked.push(door);
-   feedback.innerHTML="🎉 Richtig! Deine Türnummer:<br>"+
-   '<span class="door">'+door+"</span>";
+   feedback.innerHTML="🎉 Richtig! Deine Türnummer:<br><span class='door'>"+door+"</span>";
   }else{
    feedback.textContent="🎉 Richtig! Weiter geht's!";
   }
@@ -301,29 +298,21 @@ function checkAnswer(index,selected){
   errors=0;
   unlocked=[];
   answered=false;
-
   localStorage.removeItem(storageKey());
   saveProgress();
-
   renderQuestion();
-
-  feedback.innerHTML=
-  '<span class="errorText">🚨 10 Fehler erreicht! Alles wurde zurückgesetzt. Du musst wieder bei Frage 1 anfangen!</span>';
+  feedback.innerHTML="<span class='errorText'>🚨 7 Fehler erreicht! Alles wurde zurückgesetzt. Du musst wieder bei Frage 1 anfangen!</span>";
   return;
  }
 
  saveProgress();
  updateStats();
-
- feedback.innerHTML=
- '<span class="errorText">❌ Leider falsch! Versuch es noch einmal.</span><br>'+
- "Du hast "+errors+" von 10 Fehlern.";
-
+ feedback.innerHTML="<span class='errorText'>❌ Leider falsch! Versuch es noch einmal.</span><br>Du hast "+errors+" von 7 Fehlern.";
  selected.disabled=true;
 }
 
 function nextQuestion(){
- if(current>=12){
+ if(current>=16){
   showFinal();
  }else{
   renderQuestion();
@@ -333,13 +322,10 @@ function nextQuestion(){
 function showFinal(){
  game.classList.add("hidden");
  finished.classList.remove("hidden");
-
- document.getElementById("finalErrors").textContent=
- "Deine Fehlerzahl: "+errors+" von 10";
+ document.getElementById("finalErrors").textContent="Deine Fehlerzahl: "+errors+" von 7";
 
  const area=document.getElementById("allDoors");
  area.innerHTML="";
-
  mission.doors.forEach(number=>{
   const door=document.createElement("span");
   door.className="door";
@@ -353,7 +339,6 @@ function playAgain(){
  errors=0;
  unlocked=[];
  saveProgress();
-
  finished.classList.add("hidden");
  startScreen.classList.remove("hidden");
  document.getElementById("startButton").textContent="🎁 Quiz starten";
