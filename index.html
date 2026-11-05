@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operation Weihnachtsgeheimnis 2026</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #294333, #101b16);
+  color: #f7f0df;
+  font-family: Georgia, serif;
+  padding: 25px 15px;
+}
+
+main {
+  max-width: 650px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+header small {
+  color: #e7ca83;
+  letter-spacing: 3px;
+}
+
+h1 {
+  color: #e7ca83;
+  font-size: 38px;
+}
+
+.card {
+  background: #1b2d23;
+  border: 1px solid #927b4b;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 15px 40px #0006;
+}
+
+h2, h3 {
+  color: #e7ca83;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.progress {
+  display: flex;
+  gap: 8px;
+  margin: 25px 0;
+}
+
+.dot {
+  height: 7px;
+  flex: 1;
+  border-radius: 10px;
+  background: #435448;
+}
+
+.dot.done {
+  background: #e7ca83;
+}
+
+.puzzle {
+  background: #122119;
+  border-left: 3px solid #e7ca83;
+  padding: 20px;
+  border-radius: 8px;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #927b4b;
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+button {
+  background: #e7ca83;
+  color: #17271e;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 20px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #f5dda0;
+}
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.number {
+  background: #20372a;
+  color: #f7f0df;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.reveal {
+  background: #f4e9cb;
+  color: #243126;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.reveal h3 {
+  color: #6f3428;
+}
+
+.feedback {
+  color: #ffd18a;
+  min-height: 25px;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  color: #9eaa9f;
+  font-size: 12px;
+  margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<small>GEHEIME AKTE · DEZEMBER 2026</small>
+<h1>🎄 Operation<br>Weihnachtsgeheimnis</h1>
+<p>24 Türchen. Drei Missionen. Ein Geheimnis.</p>
+</header>
+
+<section class="card">
+
+<div id="welcome" style="text-align:center">
+<h2 id="greeting">Deine geheime Mission</h2>
+<p id="intro">Vier Rätsel warten auf dich. Löse sie und entdecke deine Türchennummern!</p>
+</div>
+
+<div class="progress" id="progress">
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+</div>
+
+<div id="game">
+<p id="stageLabel">ETAPPE 1 VON 4</p>
+<h2 id="questionTitle"></h2>
+
+<div class="puzzle" id="question"></div>
+
+<input id="answer" placeholder="Deine Antwort..." autocomplete="off">
+
+<button id="check">Antwort prüfen</button>
+<p class="feedback" id="feedback"></p>
+</div>
+
+<div id="success" class="hidden">
+<div class="reveal">
+<h3>🎉 Etappe geschafft!</h3>
+<p>Diese Türchen gehören zu dir:</p>
+<div class="numbers" id="unlockedNumbers"></div>
+</div>
+<button id="next">Weiter</button>
+</div>
+
+<div id="final" class="hidden">
+<div class="reveal">
+<h3>🎄 Mission abgeschlossen!</h3>
+<p>Das sind alle deine acht Türchennummern:</p>
+<div class="numbers" id="allNumbers"></div>
+</div>
+<p>Frohe Weihnachten! Behalte deine Nummern geheim. 🤫</p>
+</div>
+
+</section>
+
+<footer>
+OPERATION WEIHNACHTSGEHEIMNIS · 2026
+</footer>
+
+</main>
+
+<script>
+const missions = {
+
+mama: {
+name: "Mami",
+stages: [
+{
+title: "Die verschwundene Zahl",
+question: "Ich bin eine gerade Zahl. Wenn du mich verdoppelst, erhältst du zwölf. Welche Zahl bin ich?",
+answer: ["6", "sechs"],
+numbers: [2, 6]
+},
+{
+title: "Die Kalender-Spur",
+question: "Wie viele Monate liegen zwischen Januar und April? Januar und April werden nicht mitgezählt.",
+answer: ["2", "zwei"],
+numbers: [8, 11]
+},
+{
+title: "Das Familienarchiv",
+question: "Du hast 3 rote Kugeln und doppelt so viele goldene Kugeln. Wie viele Kugeln hast du insgesamt?",
+answer: ["9", "neun"],
+numbers: [14, 17]
+},
+{
+title: "Der Geburtstags-Code",
+question: "Dein besonderer Geburtstag ist am 19. Dezember. Welche Zahl gehört zu deinem Geburtstag?",
+answer: ["19", "neunzehn"],
+numbers: [19, 23]
+}
+]
+},
+
+papa: {
+name: "Dusi",
+stages: [
+{
+title: "Der erste Zahlencode",
+question: "Setze die Zahlenreihe fort: 2, 4, 6, 8, __. Welche Zahl fehlt?",
+answer: ["10", "zehn"],
+numbers: [1, 4]
+},
+{
+title: "Das Adventsrätsel",
+question: "Ein Adventskalender hat 24 Türchen. Wie viele Türchen sind es, wenn man die Hälfte nimmt?",
+answer: ["12", "zwölf"],
+numbers: [7, 10]
+},
+{
+title: "Die geheime Zahl",
+question: "Ich denke an eine Zahl. Addiere 7 zu ihr und du erhältst 20. Welche Zahl war es?",
+answer: ["13", "dreizehn"],
+numbers: [13, 16]
+},
+{
+title: "Der letzte Code",
+question: "Ein Adventskranz hat vier Kerzen. Jede Kerze steht für fünf Lichterpunkte. Wie viele Lichterpunkte sind es zusammen?",
+answer: ["20", "zwanzig"],
+numbers: [20, 22]
+}
+]
+},
+
+luni: {
+name: "Luni",
+stages: [
+{
+title: "Das Schneemann-Rätsel",
+question: "Drei Schneemänner haben jeweils zwei Knöpfe. Wie viele Knöpfe sind es insgesamt?",
+answer: ["6", "sechs"],
+numbers: [3, 5]
+},
+{
+title: "Die geheime Botschaft",
+question: "Das Wort KATZE hat sich versteckt. Wie viele Buchstaben hat das Wort?",
+answer: ["5", "fünf"],
+numbers: [9, 12]
+},
+{
+title: "Die Sternenprobe",
+question: "Am Himmel leuchten 4 Sterne. Dann kommen 4 dazu und noch einmal 4. Wie viele Sterne sind es insgesamt?",
+answer: ["12", "zwölf"],
+numbers: [15, 18]
+},
+{
+title: "Das Geschenk-Rätsel",
+question: "Du hast 6 Geschenke. Jedes Geschenk bekommt 3 Sterne auf das Papier. Wie viele Sterne brauchst du insgesamt?",
+answer: ["18", "achtzehn"],
+numbers: [21, 24]
+}
+]
+}
+};
+
+const params = new URLSearchParams(window.location.search);
+const person = (params.get("mission") || "").toLowerCase();
+const mission = missions[person];
+
+let stage = 0;
+let unlocked = [];
+
+const $ = id => document.getElementById(id);
+const storageKey = "weihnachtsgeheimnis_" + person;
+
+if (!mission) {
+  $("greeting").textContent = "Geheimcode nicht gefunden";
+  $("intro").textContent = "Bitte scanne deinen persönlichen QR-Code.";
+  $("game").classList.add("hidden");
+  $("progress").classList.add("hidden");
+} else {
+  $("greeting").textContent = "Hallo " + mission.name + "! 🎄";
+  $("intro").textContent = "Deine geheime Weihnachtsmission wartet. Löse vier Rätsel und entdecke deine acht Türchennummern.";
+
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '{"stage":0,"unlocked":[]}');
+
+  stage = saved.stage || 0;
+  unlocked = saved.unlocked || [];
+
+  if (stage >= 4) {
+    showFinal();
+  } else {
+    render();
+  }
+}
+
+function saveProgress() {
+  localStorage.setItem(storageKey, JSON.stringify({
+    stage: stage,
+    unlocked: unlocked
+  }));
+}
+
+function render() {
+  const s = mission.stages[stage];
+
+  $("game").classList.remove("hidden");
+  $("success").classList.add("hidden");
+  $("final").classList.add("hidden");
+
+  $("stageLabel").textContent = "ETAPPE " + (stage + 1) + " VON 4";
+  $("questionTitle").textContent = s.title;
+  $("question").textContent = s.question;
+  $("answer").value = "";
+  $("feedback").textContent = "";
+
+  [...$("progress").children].forEach((dot, i) => {
+    dot.classList.toggle("done", i < stage);
+  });
+}
+
+function checkAnswer() {
+  const value = $("answer").value.trim().toLowerCase();
+
+  if (!value) {
+    $("feedback").textContent = "Bitte gib eine Antwort ein.";
+    return;
+  }
+
+  const correct = mission.stages[stage].answer.includes(value);
+
+  if (!correct) {
+    $("feedback").textContent = "Leider noch nicht richtig. Versuch es noch einmal!";
+    return;
+  }
+
+  unlocked.push(...mission.stages[stage].numbers);
+  stage++;
+  saveProgress();
+
+  $("game").classList.add("hidden");
+  $("success").classList.remove("hidden");
+
+  $("unlockedNumbers").innerHTML =
+    mission.stages[stage - 1].numbers
+    .map(n => '<span class="number">' + n + '</span>')
+    .join("");
+
+  $("next").textContent = stage === 4 ? "Alle Nummern ansehen" : "Nächste Etappe";
+}
+
+function showFinal() {
+  $("game").classList.add("hidden");
+  $("success").classList.add("hidden");
+  $("final").classList.remove("hidden");
+
+  $("progress").querySelectorAll(".dot").forEach(dot => {
+    dot.classList.add("done");
+  });
+
+  $("allNumbers").innerHTML =
+    unlocked.slice().sort((a,b) => a-b)
+    .map(n => '<span class="number">' + n + '</span>')
+    .join("");
+}
+
+$("check").addEventListener("click", checkAnswer);
+
+$("answer").addEventListener("keydown", e => {
+  if (e.key === "Enter") checkAnswer();
+});
+
+$("next").addEventListener("click", () => {
+  if (stage >= 4) {
+    showFinal();
+  } else {
+    render();
+  }
+});
+</script>
+</body>
+</html>
