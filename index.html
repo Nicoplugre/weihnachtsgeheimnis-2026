@@ -5,187 +5,175 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weihnachtsgeheimnis 2026</title>
+
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;min-height:100vh;overflow-x:hidden;
-  font-family:Arial,sans-serif;color:white;
-  background:radial-gradient(ellipse at top,#286044 0%,#102f25 48%,#061711 100%);
-  display:flex;justify-content:center;align-items:center;padding:22px;
+ margin:0;min-height:100vh;padding:20px;
+ display:flex;align-items:center;justify-content:center;
+ font-family:Arial,sans-serif;color:white;overflow-x:hidden;
+ background:radial-gradient(ellipse at top,#286044,#102f25 55%,#061711);
 }
+#snowContainer{position:fixed;inset:0;pointer-events:none;z-index:1}
 .snow{
-  position:fixed;top:-20px;color:white;pointer-events:none;
-  z-index:0;animation:fall linear infinite;text-shadow:0 0 8px white;
+ position:absolute;top:-25px;color:white;
+ animation:fall linear infinite;text-shadow:0 0 8px white;
 }
 @keyframes fall{
-  0%{transform:translateY(-20px) translateX(0);opacity:0}
-  10%{opacity:.9}
-  90%{opacity:.8}
-  100%{transform:translateY(110vh) translateX(45px);opacity:0}
+ 0%{transform:translateY(-20px) translateX(0);opacity:0}
+ 10%{opacity:.9}
+ 100%{transform:translateY(110vh) translateX(50px);opacity:0}
 }
 .container{
-  position:relative;z-index:2;width:100%;max-width:680px;
-  padding:30px;background:rgba(3,24,16,.83);
-  border:2px solid #cda94d;border-radius:25px;
-  box-shadow:0 0 25px #e6c45b35,0 15px 50px #0008;
-  animation:appear .8s ease both;
+ position:relative;z-index:2;width:100%;max-width:680px;
+ padding:30px;background:rgba(3,24,16,.88);
+ border:2px solid #cda94d;border-radius:25px;
+ box-shadow:0 0 30px #e6c45b35,0 15px 50px #0008;
+ animation:appear .8s ease both;
 }
 @keyframes appear{
-  from{opacity:0;transform:translateY(20px) scale(.98)}
-  to{opacity:1;transform:translateY(0) scale(1)}
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
 }
 h1{
-  color:#f8df91;text-align:center;
-  text-shadow:0 0 12px #e6c45b65;
-  font-size:clamp(25px,5vw,36px);margin:8px 0 15px;
+ color:#f8df91;text-align:center;
+ text-shadow:0 0 12px #e6c45b65;
+ font-size:clamp(25px,5vw,36px);margin:8px 0 15px;
 }
 h2{text-align:center;color:#f8df91}
 .subtitle{text-align:center;color:#e1eadf;line-height:1.6}
 .hidden{display:none!important}
 .tree{
-  text-align:center;font-size:76px;margin:10px 0;
-  animation:sway 3s ease-in-out infinite;
-  filter:drop-shadow(0 0 12px #e7c65b66);
+ text-align:center;font-size:80px;margin:12px 0;
+ animation:sway 3s ease-in-out infinite;
+ filter:drop-shadow(0 0 12px #e7c65b66);
 }
 @keyframes sway{
-  0%,100%{transform:rotate(-3deg) scale(1)}
-  50%{transform:rotate(3deg) scale(1.04)}
+ 0%,100%{transform:rotate(-3deg)}
+ 50%{transform:rotate(3deg)}
 }
-.lights{
-  display:flex;justify-content:center;gap:15px;margin:15px 0 20px;
-}
-.light{
-  width:12px;height:12px;border-radius:50%;
-  animation:glow 1.5s infinite alternate;
-}
+.lights{display:flex;justify-content:center;gap:17px;margin:15px 0 20px}
+.light{width:13px;height:13px;border-radius:50%;animation:glow 1.5s infinite alternate}
 .light:nth-child(1){background:#ff5959;box-shadow:0 0 15px #ff5959}
 .light:nth-child(2){background:#ffe17a;box-shadow:0 0 15px #ffe17a;animation-delay:.3s}
 .light:nth-child(3){background:#70d9ff;box-shadow:0 0 15px #70d9ff;animation-delay:.6s}
 .light:nth-child(4){background:#8cff9b;box-shadow:0 0 15px #8cff9b;animation-delay:.9s}
 .light:nth-child(5){background:#ff8de1;box-shadow:0 0 15px #ff8de1;animation-delay:1.2s}
 @keyframes glow{from{opacity:.35;transform:scale(.8)}to{opacity:1;transform:scale(1.3)}}
+
+.field-label{display:block;margin:18px 0 7px;color:#f8df91;font-weight:bold}
+input,select{
+ width:100%;padding:14px;border-radius:11px;
+ border:1px solid #d6bd75;background:#f7f2df;
+ color:#183323;font-size:16px;
+}
+button{
+ cursor:pointer;font-size:16px;font-weight:bold;
+}
 .main-btn{
-  display:block;width:100%;margin:24px auto 5px;
-  padding:16px;border:2px solid #ffe6a0;border-radius:15px;
-  color:#183323;background:linear-gradient(135deg,#f9e6a3,#d6ad4c);
-  font-size:18px;font-weight:bold;cursor:pointer;
-  box-shadow:0 0 16px #eac85c55;
-  transition:transform .2s,box-shadow .2s;
-  animation:buttonGlow 2s ease-in-out infinite alternate;
+ display:block;width:100%;margin:24px auto 5px;
+ padding:16px;border:2px solid #ffe6a0;border-radius:15px;
+ color:#183323;background:linear-gradient(135deg,#f9e6a3,#d6ad4c);
+ font-size:18px;font-weight:bold;
+ box-shadow:0 0 16px #eac85c55;
+ animation:buttonGlow 2s ease-in-out infinite alternate;
 }
-.main-btn:hover{transform:scale(1.035);box-shadow:0 0 25px #f8dc83}
-@keyframes buttonGlow{
-  from{filter:brightness(.95)}
-  to{filter:brightness(1.12)}
-}
-.info{
-  display:flex;justify-content:space-between;gap:10px;
-  flex-wrap:wrap;margin:18px 0;
-}
-.info span{
-  padding:10px 13px;background:#ffffff13;
-  border:1px solid #ffffff25;border-radius:10px;
-}
-.progress-bg{
-  width:100%;height:12px;background:#ffffff20;
-  border-radius:20px;overflow:hidden;margin:15px 0 25px;
-}
-.progress{
-  height:100%;width:0%;
-  background:linear-gradient(90deg,#c69b38,#ffe69a);
-  border-radius:20px;transition:width .5s ease;
-}
-#question{
-  font-size:21px;line-height:1.5;
-  margin:24px 0;text-align:center;color:#fff5d9;
-}
+.main-btn:hover{transform:scale(1.02)}
+@keyframes buttonGlow{from{filter:brightness(.95)}to{filter:brightness(1.12)}}
+.info{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:18px 0}
+.info span{padding:10px 13px;background:#ffffff13;border:1px solid #ffffff25;border-radius:10px}
+.progress-bg{height:12px;background:#ffffff20;border-radius:20px;overflow:hidden;margin:15px 0 25px}
+.progress{height:100%;width:0%;background:linear-gradient(90deg,#c69b38,#ffe69a);transition:width .5s}
+#question{font-size:21px;line-height:1.5;margin:24px 0;text-align:center;color:#fff5d9}
 .answer{
-  display:block;width:100%;text-align:left;
-  margin:11px 0;padding:15px;
-  border-radius:12px;border:1px solid #b4c9ae;
-  background:linear-gradient(100deg,#20543b,#286448);
-  color:white;font-size:16px;cursor:pointer;
-  transition:background .2s,transform .2s;
+ display:block;width:100%;text-align:left;margin:11px 0;padding:15px;
+ border-radius:12px;border:1px solid #b4c9ae;
+ background:linear-gradient(100deg,#20543b,#286448);
+ color:white;font-size:16px;transition:.2s;
 }
 .answer:hover:not(:disabled){background:#347b55;transform:translateX(4px)}
-.answer:disabled{cursor:default;opacity:.75}
-#message{
-  min-height:30px;text-align:center;
-  margin:17px 0;font-weight:bold;color:#ffe69a;
-}
+.answer:disabled{opacity:.75}
+#message{min-height:30px;text-align:center;margin:17px 0;font-weight:bold;color:#ffe69a}
 .notice{text-align:center;color:#f5df9c;line-height:1.6}
-.doors{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;margin:22px 0;
-}
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
 .door{
-  min-height:85px;border:2px solid #e1c36f;
-  border-radius:13px;background:linear-gradient(145deg,#8b2929,#571919);
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:8px;
-  animation:appear .5s ease both;
+ min-height:85px;border:2px solid #e1c36f;border-radius:13px;
+ background:linear-gradient(145deg,#8b2929,#571919);
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ text-align:center;padding:8px;
 }
 .door strong{font-size:25px}
 .door.unlocked{background:linear-gradient(145deg,#318653,#14502e)}
 .door span{font-size:12px;margin-top:4px}
 .small{text-align:center;color:#c8d9ce;font-size:13px}
 @media(max-width:450px){
-  .container{padding:20px}
-  .doors{gap:7px}
-  .door{min-height:75px}
+ .container{padding:20px}
+ .doors{gap:7px}
+ .door{min-height:75px}
 }
 </style>
 </head>
-<body>
 
+<body>
 <div id="snowContainer"></div>
 
 <div class="container">
 
-  <section id="start">
-    <div class="lights">
-      <span class="light"></span><span class="light"></span>
-      <span class="light"></span><span class="light"></span>
-      <span class="light"></span>
-    </div>
-    <div class="tree">🎄</div>
-    <h1 id="welcomeTitle">Willkommen!</h1>
-    <p class="subtitle">
-      Dein persönliches Weihnachtsquiz 2026 wartet auf dich.
-      <br>Beantworte 12 Fragen und entdecke deine 8 Türchen!
-    </p>
-    <p class="notice">✨ Schaffst du deine Weihnachtsmission? ✨</p>
-    <button class="main-btn" onclick="startMission()">🎁 Quiz starten</button>
-    <p class="small">Viel Glück und eine schöne Weihnachtszeit!</p>
-  </section>
+<section id="start">
+ <div class="lights">
+  <span class="light"></span><span class="light"></span>
+  <span class="light"></span><span class="light"></span>
+  <span class="light"></span>
+ </div>
+ <div class="tree">🎄</div>
+ <h1>Weihnachtsgeheimnis 2026</h1>
+ <p class="subtitle">
+  Willkommen zu deinem persönlichen Weihnachtsquiz!
+  <br>Wähle deinen Namen und deine Mission.
+ </p>
 
-  <section id="quiz" class="hidden">
-    <div class="lights">
-      <span class="light"></span><span class="light"></span>
-      <span class="light"></span><span class="light"></span>
-      <span class="light"></span>
-    </div>
-    <h1 id="personTitle">Weihnachtsmission</h1>
-    <div class="info">
-      <span id="questionCounter">Frage 1 von 12</span>
-      <span id="errorCounter">Fehler: 0 / 10</span>
-    </div>
-    <div class="progress-bg"><div class="progress" id="progress"></div></div>
-    <div id="question"></div>
-    <div id="answers"></div>
-    <div id="message"></div>
-    <button id="nextBtn" class="main-btn hidden" onclick="nextQuestion()">Weiter ➜</button>
-  </section>
+ <label class="field-label" for="playerName">Dein Name:</label>
+ <input id="playerName" type="text" placeholder="Name eingeben">
 
-  <section id="final" class="hidden">
-    <div class="tree">🎄</div>
-    <h1>Du hast es geschafft!</h1>
-    <h2 id="finalTitle"></h2>
-    <p class="subtitle">Du hast alle 12 Fragen deiner Weihnachtsmission beantwortet!</p>
-    <p class="notice">Hier sind deine 8 Türchen:</p>
-    <div class="doors" id="finalDoors"></div>
-    <p class="notice">Frohe Weihnachten! ✨</p>
-  </section>
+ <label class="field-label" for="missionSelect">Deine Mission:</label>
+ <select id="missionSelect">
+  <option value="mama">Mami</option>
+  <option value="papa">Dusi (Papa)</option>
+  <option value="luni">Luni</option>
+ </select>
+
+ <p class="notice">✨ 12 Fragen warten auf dich. Sammle alle 8 Türchen! ✨</p>
+ <button class="main-btn" onclick="startMission()">🎁 Quiz starten</button>
+ <p class="small">Viel Glück und eine schöne Weihnachtszeit!</p>
+</section>
+
+<section id="quiz" class="hidden">
+ <div class="lights">
+  <span class="light"></span><span class="light"></span>
+  <span class="light"></span><span class="light"></span>
+  <span class="light"></span>
+ </div>
+ <h1 id="personTitle">Weihnachtsmission</h1>
+ <div class="info">
+  <span id="questionCounter">Frage 1 von 12</span>
+  <span id="errorCounter">Fehler: 0 / 10</span>
+ </div>
+ <div class="progress-bg"><div class="progress" id="progress"></div></div>
+ <div id="question"></div>
+ <div id="answers"></div>
+ <div id="message"></div>
+ <button id="nextBtn" class="main-btn hidden" onclick="nextQuestion()">Weiter ➜</button>
+</section>
+
+<section id="final" class="hidden">
+ <div class="tree">🎄</div>
+ <h1>Du hast es geschafft!</h1>
+ <h2 id="finalTitle"></h2>
+ <p class="subtitle">Du hast alle 12 Fragen beantwortet!</p>
+ <p class="notice">Hier sind deine gesammelten Türchen:</p>
+ <div class="doors" id="finalDoors"></div>
+ <p class="notice">Frohe Weihnachten! ✨</p>
+</section>
 
 </div>
 
@@ -194,247 +182,246 @@ const MAX_QUESTIONS=12;
 const MAX_ERRORS=10;
 
 const missions={
-  mama:{
-    name:"Mami",
-    doors:[2,6,8,11,14,17,19,23],
-    questions:[
-      {q:"Was ist 8 × 7?",a:["54","56","64","48"],c:1},
-      {q:"Wie heißt die englische Übersetzung von „Apfel“?",a:["Pear","Banana","Apple","Orange"],c:2},
-      {q:"Was ist 125 + 75?",a:["175","190","200","210"],c:2},
-      {q:"Wie heißt „Guten Morgen“ auf Französisch?",a:["Bonsoir","Bonjour","Merci","Au revoir"],c:1},
-      {q:"Wie viele Bundesländer hat Deutschland?",a:["14","15","16","17"],c:2},
-      {q:"Was ist die Hauptstadt von Frankreich?",a:["Lyon","Marseille","Paris","Nizza"],c:2},
-      {q:"Was ist 9 × 9?",a:["72","81","91","99"],c:1},
-      {q:"Welche Form ist die Vergangenheit von „go“?",a:["goed","gone","went","goes"],c:2},
-      {q:"Wie heißt „Danke“ auf Französisch?",a:["Pardon","Merci","Salut","Oui"],c:1},
-      {q:"Wie viele Minuten hat eine Stunde?",a:["50","60","70","100"],c:1},
-      {q:"Welcher Fluss fließt durch Paris?",a:["Rhein","Donau","Seine","Elbe"],c:2},
-      {q:"Was ist 144 : 12?",a:["10","11","12","14"],c:2}
-    ]
-  },
-  papa:{
-    name:"Dusi",
-    doors:[1,4,7,10,13,16,20,22],
-    questions:[
-      {q:"Welcher Hersteller baute die Simson S51?",a:["MZ","Simson","Kreidler","Zündapp"],c:1},
-      {q:"Wie viele Gänge hat eine originale Simson S51?",a:["3","4","5","6"],c:1},
-      {q:"In welcher Stadt wurden Simson-Fahrzeuge gebaut?",a:["Dresden","Zwickau","Suhl","Chemnitz"],c:2},
-      {q:"Welchen Hubraum hat die S51 ungefähr?",a:["50 cm³","80 cm³","125 cm³","250 cm³"],c:0},
-      {q:"Welche Motorbauart hat die klassische S51?",a:["Viertakt","Zweitakt","Diesel","Elektro"],c:1},
-      {q:"Wozu wird das Kraftstoff-Öl-Gemisch beim Zweitakter benötigt?",a:["Zum Schmieren","Zum Kühlen der Reifen","Für die Beleuchtung","Für die Bremse"],c:0},
-      {q:"Welche Höchstgeschwindigkeit ist für viele originale S51 mit entsprechender DDR-Zulassung bekannt?",a:["45 km/h","50 km/h","60 km/h","80 km/h"],c:2},
-      {q:"Wodurch wird bei der klassischen S51 der Zündfunke erzeugt?",a:["Durch die Zündanlage","Durch die Bremse","Durch die Kette","Durch den Auspuff"],c:0},
-      {q:"Welche Aufgabe hat die Kupplung?",a:["Sie schaltet das Licht","Sie trennt den Kraftfluss zum Getriebe","Sie pumpt Benzin","Sie bremst das Vorderrad"],c:1},
-      {q:"Was sorgt dafür, dass die Kette richtig läuft?",a:["Die Kettenspannung","Der Tankdeckel","Der Vergaser","Die Hupe"],c:0},
-      {q:"Wofür ist der Vergaser zuständig?",a:["Für das Gemisch aus Kraftstoff und Luft","Für die Bremsflüssigkeit","Für den Reifendruck","Für das Rücklicht"],c:0},
-      {q:"Was sollte man vor einer längeren Fahrt kontrollieren?",a:["Nur die Farbe","Bremsen, Reifen und Beleuchtung","Nur den Sitz","Nur den Tankdeckel"],c:1}
-    ]
-  },
-  luni:{
-    name:"Luni",
-    doors:[3,5,9,12,15,18,21,24],
-    questions:[
-      {q:"Was bedeutet ein rotes Licht an einer Ampel?",a:["Fahren","Anhalten","Schneller fahren","Hupen"],c:1},
-      {q:"Wer hat an einem Zebrastreifen Vorrang?",a:["Fußgänger","Autos immer","Fahrräder immer","Niemand"],c:0},
-      {q:"Was bedeutet ein Stoppschild?",a:["Langsam weiterfahren","Vorfahrt beachten","Anhalten und Vorfahrt gewähren","Nur hupen"],c:2},
-      {q:"Was solltest du beim Klettern vor dem Losklettern prüfen?",a:["Nur die Schuhe","Ausrüstung und Sicherung","Nur die Wandfarbe","Nichts"],c:1},
-      {q:"Was ist beim Klettern besonders wichtig?",a:["Sicherheit und Aufmerksamkeit","Möglichst schnell sein","Andere ablenken","Ohne Absprache starten"],c:0},
-      {q:"Was bedeutet ein dreieckiges Verkehrsschild mit rotem Rand meistens?",a:["Gefahr oder Warnung","Parkplatz","Autobahn","Einbahnstraße"],c:0},
-      {q:"Was sollte man mit dem Sicherungspartner beim Klettern machen?",a:["Absprachen treffen","Einfach loslegen","Nicht miteinander sprechen","Die Ausrüstung ignorieren"],c:0},
-      {q:"Was bedeutet eine durchgezogene Linie auf der Fahrbahn?",a:["Sie darf grundsätzlich nicht überfahren werden","Man muss schneller fahren","Parken ist erlaubt","Sie ist nur Dekoration"],c:0},
-      {q:"Warum kontrolliert man vor dem Klettern den Knoten?",a:["Damit die Sicherung richtig funktioniert","Damit man schneller ist","Damit die Seillänge größer wird","Nur wegen der Optik"],c:0},
-      {q:"Was bedeutet rechts vor links?",a:["Der Verkehr von rechts hat Vorrang","Der Verkehr von links hat Vorrang","Autos haben immer Vorrang","Fußgänger müssen warten"],c:0},
-      {q:"Was machst du, wenn du beim Klettern unsicher bist?",a:["Einfach weitermachen","Anhalten und mit dem Partner sprechen","Die Sicherung lösen","Schnell springen"],c:1},
-      {q:"Was gehört zu einer sicheren Kletterausrüstung?",a:["Gurt, Seil und passende Sicherungsausrüstung","Nur normale Turnschuhe","Ein Rucksack","Eine Sonnenbrille"],c:0}
-    ]
-  }
+ mama:{
+  name:"Mami",
+  doors:[2,6,8,11,14,17,19,23],
+  questions:[
+   {q:"Was ist 8 × 7?",a:["54","56","64","48"],c:1},
+   {q:"Wie heißt die englische Übersetzung von „Apfel“?",a:["Pear","Banana","Apple","Orange"],c:2},
+   {q:"Was ist 125 + 75?",a:["175","190","200","210"],c:2},
+   {q:"Wie heißt „Guten Morgen“ auf Französisch?",a:["Bonsoir","Bonjour","Merci","Au revoir"],c:1},
+   {q:"Wie viele Bundesländer hat Deutschland?",a:["14","15","16","17"],c:2},
+   {q:"Was ist die Hauptstadt von Frankreich?",a:["Lyon","Marseille","Paris","Nizza"],c:2},
+   {q:"Was ist 9 × 9?",a:["72","81","91","99"],c:1},
+   {q:"Welche Form ist die Vergangenheit von „go“?",a:["goed","gone","went","goes"],c:2},
+   {q:"Wie heißt „Danke“ auf Französisch?",a:["Pardon","Merci","Salut","Oui"],c:1},
+   {q:"Wie viele Minuten hat eine Stunde?",a:["50","60","70","100"],c:1},
+   {q:"Welcher Fluss fließt durch Paris?",a:["Rhein","Donau","Seine","Elbe"],c:2},
+   {q:"Was ist 144 : 12?",a:["10","11","12","14"],c:2}
+  ]
+ },
+ papa:{
+  name:"Dusi",
+  doors:[1,4,7,10,13,16,20,22],
+  questions:[
+   {q:"Welcher Hersteller baute die Simson S51?",a:["MZ","Simson","Kreidler","Zündapp"],c:1},
+   {q:"Wie viele Gänge hat eine originale Simson S51?",a:["3","4","5","6"],c:1},
+   {q:"In welcher Stadt wurden Simson-Fahrzeuge gebaut?",a:["Dresden","Zwickau","Suhl","Chemnitz"],c:2},
+   {q:"Welchen Hubraum hat die S51 ungefähr?",a:["50 cm³","80 cm³","125 cm³","250 cm³"],c:0},
+   {q:"Welche Motorbauart hat die klassische S51?",a:["Viertakt","Zweitakt","Diesel","Elektro"],c:1},
+   {q:"Wozu wird das Kraftstoff-Öl-Gemisch beim Zweitakter benötigt?",a:["Zum Schmieren","Zum Kühlen der Reifen","Für die Beleuchtung","Für die Bremse"],c:0},
+   {q:"Welche Höchstgeschwindigkeit ist für viele originale S51 mit entsprechender DDR-Zulassung bekannt?",a:["45 km/h","50 km/h","60 km/h","80 km/h"],c:2},
+   {q:"Wodurch wird bei der klassischen S51 der Zündfunke erzeugt?",a:["Durch die Zündanlage","Durch die Bremse","Durch die Kette","Durch den Auspuff"],c:0},
+   {q:"Welche Aufgabe hat die Kupplung?",a:["Sie schaltet das Licht","Sie trennt den Kraftfluss zum Getriebe","Sie pumpt Benzin","Sie bremst das Vorderrad"],c:1},
+   {q:"Was sorgt dafür, dass die Kette richtig läuft?",a:["Die Kettenspannung","Der Tankdeckel","Der Vergaser","Die Hupe"],c:0},
+   {q:"Wofür ist der Vergaser zuständig?",a:["Für das Gemisch aus Kraftstoff und Luft","Für die Bremsflüssigkeit","Für den Reifendruck","Für das Rücklicht"],c:0},
+   {q:"Was sollte man vor einer längeren Fahrt kontrollieren?",a:["Nur die Farbe","Bremsen, Reifen und Beleuchtung","Nur den Sitz","Nur den Tankdeckel"],c:1}
+  ]
+ },
+ luni:{
+  name:"Luni",
+  doors:[3,5,9,12,15,18,21,24],
+  questions:[
+   {q:"Was bedeutet ein rotes Licht an einer Ampel?",a:["Fahren","Anhalten","Schneller fahren","Hupen"],c:1},
+   {q:"Wer hat an einem Zebrastreifen Vorrang?",a:["Fußgänger","Autos immer","Fahrräder immer","Niemand"],c:0},
+   {q:"Was bedeutet ein Stoppschild?",a:["Langsam weiterfahren","Vorfahrt beachten","Anhalten und Vorfahrt gewähren","Nur hupen"],c:2},
+   {q:"Was solltest du beim Klettern vor dem Losklettern prüfen?",a:["Nur die Schuhe","Ausrüstung und Sicherung","Nur die Wandfarbe","Nichts"],c:1},
+   {q:"Was ist beim Klettern besonders wichtig?",a:["Sicherheit und Aufmerksamkeit","Möglichst schnell sein","Andere ablenken","Ohne Absprache starten"],c:0},
+   {q:"Was bedeutet ein dreieckiges Verkehrsschild mit rotem Rand meistens?",a:["Gefahr oder Warnung","Parkplatz","Autobahn","Einbahnstraße"],c:0},
+   {q:"Was sollte man mit dem Sicherungspartner beim Klettern machen?",a:["Absprachen treffen","Einfach loslegen","Nicht miteinander sprechen","Die Ausrüstung ignorieren"],c:0},
+   {q:"Was bedeutet eine durchgezogene Linie auf der Fahrbahn?",a:["Sie darf grundsätzlich nicht überfahren werden","Man muss schneller fahren","Parken ist erlaubt","Sie ist nur Dekoration"],c:0},
+   {q:"Warum kontrolliert man vor dem Klettern den Knoten?",a:["Damit die Sicherung richtig funktioniert","Damit man schneller ist","Damit die Seillänge größer wird","Nur wegen der Optik"],c:0},
+   {q:"Was bedeutet rechts vor links?",a:["Der Verkehr von rechts hat Vorrang","Der Verkehr von links hat Vorrang","Autos haben immer Vorrang","Fußgänger müssen warten"],c:0},
+   {q:"Was machst du, wenn du beim Klettern unsicher bist?",a:["Einfach weitermachen","Anhalten und mit dem Partner sprechen","Die Sicherung lösen","Schnell springen"],c:1},
+   {q:"Was gehört zu einer sicheren Kletterausrüstung?",a:["Gurt, Seil und passende Sicherungsausrüstung","Nur normale Turnschuhe","Ein Rucksack","Eine Sonnenbrille"],c:0}
+  ]
+ }
 };
 
 let person=null;
+let playerName="";
 let current=0;
 let errors=0;
 let unlocked=[];
 let answered=false;
 
 function makeSnow(){
-  const container=document.getElementById("snowContainer");
-  for(let i=0;i<35;i++){
-    const flake=document.createElement("div");
-    flake.className="snow";
-    flake.textContent="❄";
-    flake.style.left=Math.random()*100+"vw";
-    flake.style.fontSize=(8+Math.random()*13)+"px";
-    flake.style.animationDuration=(7+Math.random()*12)+"s";
-    flake.style.animationDelay=(-Math.random()*15)+"s";
-    container.appendChild(flake);
-  }
+ const container=document.getElementById("snowContainer");
+ for(let i=0;i<40;i++){
+  const flake=document.createElement("div");
+  flake.className="snow";
+  flake.textContent="❄";
+  flake.style.left=Math.random()*100+"vw";
+  flake.style.fontSize=(8+Math.random()*14)+"px";
+  flake.style.animationDuration=(7+Math.random()*12)+"s";
+  flake.style.animationDelay=(-Math.random()*15)+"s";
+  container.appendChild(flake);
+ }
 }
 makeSnow();
 
-function getMission(){
-  const params=new URLSearchParams(window.location.search);
-  let id=(params.get("mission")||"mama").toLowerCase();
-  if(id==="mami")id="mama";
-  if(id==="dusi")id="papa";
-  if(id==="luna")id="luni";
-  return missions[id]?id:"mama";
-}
-
 function storageKey(){
-  return "weihnachtsgeheimnis_2026_v12_e10_"+person;
+ return "weihnachtsgeheimnis_2026_v12_e10_"+person+"_"+playerName.toLowerCase().replace(/[^a-z0-9äöüß]/g,"");
 }
 
 function saveProgress(){
-  localStorage.setItem(storageKey(),JSON.stringify({
-    current,errors,unlocked
-  }));
+ localStorage.setItem(storageKey(),JSON.stringify({current,errors,unlocked}));
 }
 
 function loadProgress(){
-  const saved=localStorage.getItem(storageKey());
-  if(!saved)return;
-  try{
-    const data=JSON.parse(saved);
-    current=Math.min(Math.max(Number(data.current)||0,0),11);
-    errors=Math.min(Math.max(Number(data.errors)||0,0),9);
-    unlocked=Array.isArray(data.unlocked)
-      ?data.unlocked.filter(n=>missions[person].doors.includes(n)):[];
-  }catch(e){
-    localStorage.removeItem(storageKey());
-  }
+ const saved=localStorage.getItem(storageKey());
+ if(!saved)return;
+ try{
+  const data=JSON.parse(saved);
+  current=Math.min(Math.max(Number(data.current)||0,0),11);
+  errors=Math.min(Math.max(Number(data.errors)||0,0),9);
+  unlocked=Array.isArray(data.unlocked)
+   ?data.unlocked.filter(n=>missions[person].doors.includes(n)):[];
+ }catch(e){
+  localStorage.removeItem(storageKey());
+ }
 }
 
 function startMission(){
-  person=getMission();
-  current=0;errors=0;unlocked=[];
-  loadProgress();
+ playerName=document.getElementById("playerName").value.trim();
+ person=document.getElementById("missionSelect").value;
 
-  document.getElementById("start").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  document.getElementById("personTitle").textContent=
-    "🎄 Mission für "+missions[person].name;
-  showQuestion();
+ if(!playerName){
+  alert("Bitte gib zuerst deinen Namen ein!");
+  document.getElementById("playerName").focus();
+  return;
+ }
+
+ current=0;
+ errors=0;
+ unlocked=[];
+ loadProgress();
+
+ document.getElementById("start").classList.add("hidden");
+ document.getElementById("quiz").classList.remove("hidden");
+ document.getElementById("personTitle").textContent=
+  "🎄 Mission für "+playerName+" ("+missions[person].name+")";
+
+ showQuestion();
 }
 
 function showQuestion(){
-  answered=false;
-  const item=missions[person].questions[current];
+ answered=false;
+ const item=missions[person].questions[current];
 
-  document.getElementById("questionCounter").textContent=
-    "Frage "+(current+1)+" von 12";
-  document.getElementById("errorCounter").textContent=
-    "Fehler: "+errors+" / 10";
-  document.getElementById("progress").style.width=
-    (current/MAX_QUESTIONS*100)+"%";
-  document.getElementById("question").textContent=item.q;
-  document.getElementById("message").textContent="";
-  document.getElementById("nextBtn").classList.add("hidden");
+ document.getElementById("questionCounter").textContent=
+  "Frage "+(current+1)+" von 12";
+ document.getElementById("errorCounter").textContent=
+  "Fehler: "+errors+" / 10";
+ document.getElementById("progress").style.width=
+  (current/MAX_QUESTIONS*100)+"%";
+ document.getElementById("question").textContent=item.q;
+ document.getElementById("message").textContent="";
+ document.getElementById("nextBtn").classList.add("hidden");
 
-  const answers=document.getElementById("answers");
-  answers.innerHTML="";
+ const answers=document.getElementById("answers");
+ answers.innerHTML="";
 
-  item.a.forEach((answer,index)=>{
-    const btn=document.createElement("button");
-    btn.className="answer";
-    btn.textContent=String.fromCharCode(65+index)+") "+answer;
-    btn.onclick=()=>checkAnswer(index,btn);
-    answers.appendChild(btn);
-  });
+ item.a.forEach((answer,index)=>{
+  const btn=document.createElement("button");
+  btn.className="answer";
+  btn.textContent=String.fromCharCode(65+index)+") "+answer;
+  btn.onclick=()=>checkAnswer(index,btn);
+  answers.appendChild(btn);
+ });
 }
 
 function checkAnswer(index,button){
-  if(answered)return;
-  const item=missions[person].questions[current];
+ if(answered)return;
+ const item=missions[person].questions[current];
 
-  if(index===item.c){
-    answered=true;
-    button.style.background="#267b4b";
+ if(index===item.c){
+  answered=true;
+  button.style.background="#267b4b";
 
-    // Acht Türchen werden über die zwölf Fragen verteilt.
-    const rewardQuestions=[0,1,3,4,6,7,9,11];
+  const rewardQuestions=[0,1,3,4,6,7,9,11];
 
-    if(rewardQuestions.includes(current)){
-      const rewardIndex=rewardQuestions.indexOf(current);
-      const door=missions[person].doors[rewardIndex];
-      if(!unlocked.includes(door))unlocked.push(door);
-      document.getElementById("message").textContent=
-        "🎁 Richtig! Türchen "+door+" freigeschaltet!";
-    }else{
-      document.getElementById("message").textContent="✨ Richtig beantwortet!";
-    }
-
-    document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
-    document.getElementById("nextBtn").classList.remove("hidden");
-    saveProgress();
+  if(rewardQuestions.includes(current)){
+   const rewardIndex=rewardQuestions.indexOf(current);
+   const door=missions[person].doors[rewardIndex];
+   if(!unlocked.includes(door))unlocked.push(door);
+   document.getElementById("message").textContent=
+    "🎁 Richtig! Türchen "+door+" freigeschaltet!";
   }else{
-    errors++;
-    document.getElementById("errorCounter").textContent=
-      "Fehler: "+errors+" / 10";
-    button.disabled=true;
-    button.style.background="#8b2929";
-
-    if(errors>=MAX_ERRORS){
-      resetMission();
-      return;
-    }
-
-    document.getElementById("message").textContent=
-      "Leider falsch! Versuch es noch einmal.";
-    saveProgress();
+   document.getElementById("message").textContent="✨ Richtig beantwortet!";
   }
+
+  document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+  document.getElementById("nextBtn").classList.remove("hidden");
+  saveProgress();
+ }else{
+  errors++;
+  document.getElementById("errorCounter").textContent=
+   "Fehler: "+errors+" / 10";
+  button.disabled=true;
+  button.style.background="#8b2929";
+
+  if(errors>=MAX_ERRORS){
+   resetMission();
+   return;
+  }
+
+  document.getElementById("message").textContent=
+   "Leider falsch! Versuch es noch einmal.";
+  saveProgress();
+ }
 }
 
 function nextQuestion(){
-  current++;
-  if(current>=MAX_QUESTIONS){
-    showFinal();
-    return;
-  }
-  saveProgress();
-  showQuestion();
+ current++;
+ if(current>=MAX_QUESTIONS){
+  showFinal();
+  return;
+ }
+ saveProgress();
+ showQuestion();
 }
 
 function resetMission(){
-  current=0;
-  errors=0;
-  unlocked=[];
-  localStorage.removeItem(storageKey());
+ current=0;
+ errors=0;
+ unlocked=[];
+ localStorage.removeItem(storageKey());
 
-  document.getElementById("message").textContent=
-    "❄ 10 Fehler erreicht! Deine Mission beginnt von vorn.";
+ document.getElementById("message").textContent=
+  "❄ 10 Fehler erreicht! Die Mission beginnt von vorn.";
+ document.getElementById("answers").innerHTML="";
+ document.getElementById("nextBtn").classList.add("hidden");
 
-  document.getElementById("answers").innerHTML="";
-  document.getElementById("nextBtn").classList.add("hidden");
-
-  setTimeout(()=>{
-    saveProgress();
-    showQuestion();
-  },2200);
+ setTimeout(()=>{
+  saveProgress();
+  showQuestion();
+ },2200);
 }
 
 function showFinal(){
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("final").classList.remove("hidden");
-  document.getElementById("finalTitle").textContent=
-    "Mission für "+missions[person].name;
+ document.getElementById("quiz").classList.add("hidden");
+ document.getElementById("final").classList.remove("hidden");
 
-  const doors=document.getElementById("finalDoors");
-  doors.innerHTML="";
+ document.getElementById("finalTitle").textContent=
+  "Mission für "+playerName;
 
-  missions[person].doors.forEach((number,index)=>{
-    const div=document.createElement("div");
-    div.className="door"+(unlocked.includes(number)?" unlocked":"");
-    div.style.animationDelay=(index*.08)+"s";
+ const doors=document.getElementById("finalDoors");
+ doors.innerHTML="";
 
-    if(unlocked.includes(number)){
-      div.innerHTML="<strong>🎁</strong><span>Türchen "+number+"</span><span>Freigeschaltet</span>";
-    }else{
-      div.innerHTML="<strong>🔒</strong><span>Türchen "+number+"</span><span>Noch gesperrt</span>";
-    }
-    doors.appendChild(div);
-  });
+ missions[person].doors.forEach((number,index)=>{
+  const div=document.createElement("div");
+  div.className="door"+(unlocked.includes(number)?" unlocked":"");
+  div.style.animationDelay=(index*.08)+"s";
 
-  localStorage.removeItem(storageKey());
+  div.innerHTML=unlocked.includes(number)
+   ?"<strong>🎁</strong><span>Türchen "+number+"</span><span>Freigeschaltet</span>"
+   :"<strong>🔒</strong><span>Türchen "+number+"</span><span>Noch gesperrt</span>";
+
+  doors.appendChild(div);
+ });
+
+ localStorage.removeItem(storageKey());
 }
 </script>
 </body>
